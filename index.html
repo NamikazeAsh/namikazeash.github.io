@@ -324,6 +324,14 @@
       background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     }
     
+    .project-image.green-bg {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+
+    .project-image.purple-bg {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    }
+    
     .project-content {
       padding: 1.5rem;
       display: flex;
@@ -507,19 +515,19 @@
   <canvas id="particles"></canvas>
   <div class="hero-content">
     <h1>Ashwin Satish</h1>
-    <p class="tagline">Data. Logic. Clarity.</p>
+    <p class="tagline">Data. Logic. Precision.</p>
     <div class="stats">
       <div class="stat">
         <div class="stat-number">2000+</div>
-        <div class="stat-label">Procedures Saved</div>
+        <div class="stat-label">Procedures Prevented</div>
       </div>
       <div class="stat">
         <div class="stat-number">2% → 77%</div>
-        <div class="stat-label">LYME DETECTION BOOST</div>
+        <div class="stat-label">LYME RECALL BOOST</div>
       </div>
       <div class="stat">
-        <div class="stat-number">26% → 40%</div>
-        <div class="stat-label">Accuracy to Automation</div>
+        <div class="stat-number">70%</div>
+        <div class="stat-label">HALLUCINATION DROP</div>
       </div>
     </div>
     <div class="cta-buttons">
@@ -606,36 +614,56 @@
 <section id="projects">
   <h2>Projects</h2>
   <div class="project-grid">
+    <!-- MetaMatch Updated -->
     <div class="project-card">
       <div class="project-image dark-bg">
         <img src="images/metamatch_logo.png" alt="MetaMatch Logo">
       </div>
       <div class="project-content">
-        <h3>MetaMatch - Pokémon Team Analyzer</h3>
-        <p>LLM-powered pipeline analyzing top 300 meta threats in seconds vs hours manually</p>
+        <h3>MetaMatch</h3>
+        <p>A RAG-powered engine combining deterministic game logic with Llama 3.2 to eliminate hallucinations in competitive Pokémon strategy.</p>
         <div class="project-stats">
-          <span class="project-stat">30% token reduction</span>
-          <span class="project-stat">Real-time updates</span>
+          <span class="project-stat">ChromaDB RAG</span>
+          <span class="project-stat">70% Less Hallucination</span>
         </div>
         <div class="project-links">
           <a href="https://github.com/NamikazeAsh/MetaMatch" target="_blank">→ GitHub</a>
         </div>
       </div>
     </div>
-    
+
+    <!-- MultiHop New -->
     <div class="project-card">
-      <div class="project-image blue-bg">
-        <img src="images/aceai_logo.png" alt="AceAI Logo">
+      <div class="project-image purple-bg">
+        <img src="images/multihop_logo.png" alt="MultiHop Logo">
       </div>
       <div class="project-content">
-        <h3>AceAI - Card Classifier</h3>
-        <p>Real-time 52-card recognition from webcam for casino analytics & game automation</p>
+        <h3>MultiHop Fact Verification</h3>
+        <p>Retrieval system using BM25 and Dense Retrieval (FAISS/S-BERT) to verify complex claims across multiple Wikipedia articles.</p>
         <div class="project-stats">
-          <span class="project-stat">85% TPR</span>
-          <span class="project-stat"><100ms latency</span>
+          <span class="project-stat">FAISS</span>
+          <span class="project-stat">S-BERT</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/NamikazeAsh/AceAI" target="_blank">→ GitHub</a>
+          <a href="https://github.com/NamikazeAsh/Multihop-Fact-Verification" target="_blank">→ GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PantryPilot New -->
+    <div class="project-card">
+      <div class="project-image green-bg">
+        <img src="images/pantrypilot_logo.png" alt="PantryPilot Logo">
+      </div>
+      <div class="project-content">
+        <h3>PantryPilot</h3>
+        <p>End-to-end data pipeline & recipe assistant fine-tuned on Llama 3.2 3B using LoRA, featuring automated inventory forecasting.</p>
+        <div class="project-stats">
+          <span class="project-stat">Fine-tuned LLM</span>
+          <span class="project-stat">Bias Evaluation</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/abhikothari091/PantryPilot" target="_blank">→ GitHub</a>
         </div>
       </div>
     </div>
@@ -646,10 +674,10 @@
       </div>
       <div class="project-content">
         <h3>SlamDunk Insights</h3>
-        <p>Clustered 20,000+ games to surface 3 winning strategies with matchup predictions</p>
+        <p>Clustered 20,000+ NBA games to surface winning strategies and matchup predictions using K-means.</p>
         <div class="project-stats">
           <span class="project-stat">8% vs Vegas</span>
-          <span class="project-stat">K-means clustering</span>
+          <span class="project-stat">Scikit-learn</span>
         </div>
         <div class="project-links">
           <a href="https://github.com/NamikazeAsh/SlamDunk-Insights" target="_blank">→ GitHub</a>
@@ -663,47 +691,50 @@
   <h2>Technical Skills</h2>
   <div class="skills-container">
     <div class="skill-category">
-      <h3>Languages & ML</h3>
+      <h3>GenAI & LLMs</h3>
       <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">R</span>
-        <span class="skill-tag">TensorFlow</span>
-        <span class="skill-tag">PyTorch</span>
-        <span class="skill-tag">Scikit-learn</span>
-      </div>
-    </div>
-    
-    <div class="skill-category">
-      <h3>Data & Analytics</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Pandas</span>
-        <span class="skill-tag">NumPy</span>
-        <span class="skill-tag">PySpark</span>
-        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag">LangChain</span>
+        <span class="skill-tag">Transformers</span>
+        <span class="skill-tag">RAG</span>
+        <span class="skill-tag">LoRA</span>
+        <span class="skill-tag">Ollama</span>
         <span class="skill-tag">Hugging Face</span>
       </div>
     </div>
     
     <div class="skill-category">
-      <h3>Cloud & Tools</h3>
+      <h3>Core ML & Data</h3>
       <div class="skill-tags">
-        <span class="skill-tag">AWS</span>
-        <span class="skill-tag">Azure</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">Snowflake</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">OpenCV</span>
       </div>
     </div>
     
     <div class="skill-category">
-      <h3>Visualization</h3>
+      <h3>MLOps & Cloud</h3>
       <div class="skill-tags">
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">GCP</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Airflow</span>
+        <span class="skill-tag">MLflow</span>
+        <span class="skill-tag">Git</span>
+      </div>
+    </div>
+    
+    <div class="skill-category">
+      <h3>Analytics & Viz</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL</span>
         <span class="skill-tag">Tableau</span>
-        <span class="skill-tag">Matplotlib</span>
-        <span class="skill-tag">Seaborn</span>
         <span class="skill-tag">Plotly</span>
+        <span class="skill-tag">Spark</span>
+        <span class="skill-tag">Snowflake</span>
+        <span class="skill-tag">Seaborn</span>
       </div>
     </div>
   </div>
