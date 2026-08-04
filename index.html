@@ -571,41 +571,41 @@
   <h2>Experience</h2>
   <div class="timeline">
     <div class="timeline-item">
-      <h3>Machine Learning Intern</h3>
+      <h3>Machine Learning Developer Intern</h3>
       <p class="timeline-meta">Gyori Lab for Computational Biomedicine · Jan 2026 - Present · Boston, MA</p>
       <ul>
-        <li>Parsed 35M PubMed records, identifying 278K+ trial-linked publications; built TrialSynth's LLM pipeline turning 13K+ papers into structured KG datasets</li>
-        <li>Designed CoGEx's Trial Result schema: 7 Neo4j node types, 9 relationship types, 115K+ nodes and 116K+ relationships for queryable clinical trials</li>
-        <li>Reduced LLM output tokens 300%+ via anchor and sentence-index extractors with full provenance traceability</li>
+        <li>Parsed 35M PubMed records, identifying 278K+ trial-linked publications; built TrialSynth's LLM extraction pipeline turning 13K+ papers into structured KG data</li>
+        <li>Designed CoGEx's Trial Result data model: Neo4j graph with 115K+ nodes and 116K+ relationships, exposed via REST APIs & a Flask search interface</li>
+        <li>Improved adverse-event grounding coverage 75.1% → 85.4% via a custom pipeline integrating the Ontology of Adverse Events (OAE)</li>
+        <li>Led a multi-provider LLM benchmark on AWS Bedrock, cutting inference costs 50% while maintaining extraction quality</li>
       </ul>
     </div>
 
     <div class="timeline-item">
       <h3>Machine Learning Researcher</h3>
-      <p class="timeline-meta">Northeastern University · Jan 2025 - Present · Boston, MA</p>
+      <p class="timeline-meta">Northeastern University · Jan 2025 - Dec 2025 · Boston, MA</p>
       <ul>
-        <li>Boosted true positives 2% → 77% with zero false positives via 7-CNN ensemble</li>
-        <li>Automated 10,000+ cell reconstructions with OpenCV & Pillow, saving weeks of manual work</li>
-        <li>Boosted accuracy 13% via augmentation & L2/dropout regularization</li>
+        <li>Boosted true positives 2% → 77% with zero false positives via 7-model CNN ensemble for Lyme cell detection</li>
+        <li>Built a Python pipeline for reconstruction & masking of 30,000+ cell images, saving the biology team weeks of manual work</li>
+        <li>Boosted accuracy 13% via augmentation & L2/dropout regularization, achieving production-ready performance</li>
       </ul>
     </div>
-    
+
     <div class="timeline-item">
       <h3>Teaching Assistant - DS3000 (Foundations of Data Science)</h3>
       <p class="timeline-meta">Northeastern University · Aug 2025 - Dec 2025 · Boston, MA</p>
       <ul>
-        <li>Mentored 300+ students in ML foundations via NumPy demos & problem sessions</li>
-        <li>Led 4+ weekly office hours on optimization, low-rank approximation, regression</li>
+        <li>Mentored 300+ students in linear algebra & statistics via problem-solving & NumPy demos</li>
       </ul>
     </div>
-    
+
     <div class="timeline-item">
       <h3>Data Science Intern</h3>
       <p class="timeline-meta">CarerAI · July 2023 - May 2024 · Gurgaon, India</p>
       <ul>
-        <li>Prevented 2,000+ unnecessary procedures via KNN analysis of patient records</li>
-        <li>Improved classification accuracy 26.4% through feature engineering</li>
-        <li>Improved KNN accuracy 20% using DBSCAN clustering to remove record outliers, reducing false positives in surgery recommendations</li>
+        <li>Prevented 2,000+ unnecessary procedures by uncovering 500+ surgery avoidance cases via KNN analysis of patient records</li>
+        <li>Leveraged EHR for a risk-score, improving classification accuracy 26.4% and increasing confidence in surgery avoidance cases</li>
+        <li>Improved KNN accuracy 20% using DBSCAN to remove record outliers, reducing false positives in surgery recommendations</li>
       </ul>
     </div>
     
@@ -691,6 +691,24 @@
         </div>
         <div class="project-links">
           <a href="https://github.com/NamikazeAsh/SlamDunk-Insights" target="_blank">→ GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Airlytics New -->
+    <div class="project-card">
+      <div class="project-image blue-bg">
+        <img src="images/airlytics_logo.png" alt="Airlytics Logo">
+      </div>
+      <div class="project-content">
+        <h3>Airlytics</h3>
+        <p>Personal health analytics dashboard syncing Fitbit data via the Google Health API, with a Groq-powered AI coach and a walk-forward-validated ElasticNet model forecasting next-day readiness.</p>
+        <div class="project-stats">
+          <span class="project-stat">16.6% vs Naive Baseline</span>
+          <span class="project-stat">Groq AI Coach</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/NamikazeAsh/Airlytics" target="_blank">→ GitHub</a>
         </div>
       </div>
     </div>
