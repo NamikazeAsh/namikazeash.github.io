@@ -443,6 +443,35 @@
       border-color: var(--accent);
       transform: translateY(-2px);
     }
+
+    .skill-tag[data-project] {
+      cursor: help;
+      position: relative;
+    }
+
+    .skill-tag[data-project]::after {
+      content: attr(data-project);
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: var(--bg);
+      padding: .5rem .9rem;
+      border-radius: 8px;
+      font-size: .75rem;
+      font-weight: 500;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+      box-shadow: 0 6px 16px var(--shadow);
+      z-index: 10;
+    }
+
+    .skill-tag[data-project]:hover::after {
+      opacity: 1;
+    }
     
     /* Contact */
     .contact-section {
@@ -793,34 +822,34 @@
       <h3>GenAI & LLMs</h3>
       <div class="skill-tags">
         <span class="skill-tag">LangChain</span>
-        <span class="skill-tag">Transformers</span>
-        <span class="skill-tag">RAG</span>
-        <span class="skill-tag">LoRA</span>
-        <span class="skill-tag">Ollama</span>
-        <span class="skill-tag">Hugging Face</span>
+        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification">Transformers</span>
+        <span class="skill-tag" data-project="MetaMatch">RAG</span>
+        <span class="skill-tag" data-project="PantryPilot">LoRA</span>
+        <span class="skill-tag" data-project="MetaMatch">Ollama</span>
+        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification">Hugging Face</span>
       </div>
     </div>
     
     <div class="skill-category">
       <h3>Core ML & Data</h3>
       <div class="skill-tags">
-        <span class="skill-tag">Python</span>
+        <span class="skill-tag" data-project="Used across all projects">Python</span>
         <span class="skill-tag">PyTorch</span>
-        <span class="skill-tag">TensorFlow</span>
-        <span class="skill-tag">Scikit-learn</span>
-        <span class="skill-tag">Pandas</span>
-        <span class="skill-tag">OpenCV</span>
+        <span class="skill-tag" data-project="Northeastern Research (Lyme Cell Detection)">TensorFlow</span>
+        <span class="skill-tag" data-project="SlamDunk Insights, CarerAI">Scikit-learn</span>
+        <span class="skill-tag" data-project="Airlytics, Casino Retention & Promo A/B Test">Pandas</span>
+        <span class="skill-tag" data-project="Northeastern Research (Lyme Cell Detection)">OpenCV</span>
       </div>
     </div>
     
     <div class="skill-category">
       <h3>MLOps & Cloud</h3>
       <div class="skill-tags">
-        <span class="skill-tag">AWS</span>
-        <span class="skill-tag">GCP</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Airflow</span>
-        <span class="skill-tag">MLflow</span>
+        <span class="skill-tag" data-project="Gyori Lab (AWS Bedrock), Christ Consulting (AWS migration)">AWS</span>
+        <span class="skill-tag" data-project="PantryPilot (CI/CD deployment)">GCP</span>
+        <span class="skill-tag" data-project="MetaMatch, PantryPilot">Docker</span>
+        <span class="skill-tag" data-project="PantryPilot">Airflow</span>
+        <span class="skill-tag" data-project="PantryPilot">MLflow</span>
         <span class="skill-tag">Git</span>
       </div>
     </div>
@@ -828,9 +857,9 @@
     <div class="skill-category">
       <h3>Analytics & Viz</h3>
       <div class="skill-tags">
-        <span class="skill-tag">SQL</span>
+        <span class="skill-tag" data-project="Casino Retention & Promo A/B Test, Airlytics">SQL</span>
         <span class="skill-tag">Tableau</span>
-        <span class="skill-tag">Plotly</span>
+        <span class="skill-tag" data-project="SlamDunk Insights, Casino Retention & Promo A/B Test">Plotly</span>
         <span class="skill-tag">Spark</span>
         <span class="skill-tag">Snowflake</span>
         <span class="skill-tag">Seaborn</span>
