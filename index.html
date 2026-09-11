@@ -113,38 +113,6 @@
       margin-bottom: 1rem;
     }
     
-    .tagline { 
-      font-size: 1.3rem; 
-      color: var(--sub);
-      margin-bottom: 1rem;
-      font-weight: 400;
-    }
-    
-    .stats {
-      display: flex;
-      gap: 3rem;
-      justify-content: center;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-    
-    .stat {
-      text-align: center;
-    }
-    
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-    
-    .stat-label {
-      font-size: .9rem;
-      color: var(--sub);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
     .cta-buttons {
       display: flex;
       gap: 1rem;
@@ -177,8 +145,8 @@
       color: white;
     }
 
-    section { 
-      max-width: 1100px; 
+    section {
+      max-width: 1300px;
       margin: 0 auto; 
       padding: 5rem 2rem; 
       position: relative; 
@@ -206,6 +174,37 @@
       border-radius: 2px;
     }
     
+    /* About */
+    .about-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .about-photo {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid var(--border);
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .about-text {
+      text-align: center;
+      max-width: 600px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--sub);
+    }
+
+    @media (max-width: 600px) {
+      .about-content { flex-direction: column; }
+    }
+
     /* Experience Timeline */
     .timeline {
       position: relative;
@@ -286,10 +285,14 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      color: var(--text);
+      text-decoration: none;
     }
-    
+
     .project-card:hover {
+      color: var(--text);
       transform: translateY(-8px);
+      border-color: var(--accent);
       box-shadow: 0 20px 40px var(--shadow);
     }
     
@@ -310,6 +313,11 @@
       height: 70%;
       object-fit: contain;
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      transition: transform .3s;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.06);
     }
     
     .project-image.dark-bg {
@@ -353,7 +361,8 @@
     
     .project-stats {
       display: flex;
-      gap: 1rem;
+      flex-wrap: wrap;
+      gap: .6rem;
       margin-bottom: 1.5rem;
     }
     
@@ -372,9 +381,10 @@
       margin-top: auto;
     }
     
-    .project-links a {
+    .project-links span {
       font-size: .9rem;
       font-weight: 600;
+      color: var(--accent);
       display: flex;
       align-items: center;
       gap: .3rem;
@@ -489,7 +499,6 @@
     /* Responsive */
     @media (max-width: 768px) {
       nav ul { gap: 1rem; font-size: .9rem; }
-      .stats { gap: 2rem; }
       .timeline { padding-left: 1rem; }
       .timeline:before { display: none; }
       .timeline-item:before { display: none; }
@@ -515,21 +524,6 @@
   <canvas id="particles"></canvas>
   <div class="hero-content">
     <h1>Ashwin Satish</h1>
-    <p class="tagline">Data. Logic. Precision.</p>
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-number">2000+</div>
-        <div class="stat-label">Procedures Prevented</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">2% → 77%</div>
-        <div class="stat-label">LYME RECALL BOOST</div>
-      </div>
-      <div class="stat">
-        <div class="stat-number">278K+</div>
-        <div class="stat-label">TRIAL-PAPER LINKS</div>
-      </div>
-    </div>
     <div class="cta-buttons">
       <a class="btn" href="Resume - DS.pdf" download>Download Resume</a>
       <a class="btn btn-outline" href="https://github.com/NamikazeAsh" target="_blank">View GitHub</a>
@@ -539,11 +533,14 @@
 
 <section id="about">
   <h2>About Me</h2>
-  <p style="text-align: center; max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; color: var(--sub);">
-    MS Data Science student at Northeastern. 
-    I build things humans are too slow, lazy, or error-prone to do, like detecting disease cells before anyone notices.<br><br> I’m currently working on software to help create Pokémon teams 
-    that don’t embarrass their owners.<br><br> My code ships, works, and occasionally makes life a little easier.
-  </p>
+  <div class="about-content">
+    <img class="about-photo" src="images/pfp.png" alt="Ashwin Satish">
+    <p class="about-text">
+      MS Data Science student at Northeastern.
+      I build things humans are too slow, lazy, or error-prone to do, like detecting disease cells before anyone notices.<br><br> I’m currently working on software to help create Pokémon teams
+      that don’t embarrass their owners.<br><br> My code ships, works, and occasionally makes life a little easier.
+    </p>
+  </div>
 </section>
 
 <section id="resume">
@@ -625,111 +622,117 @@
   <h2>Projects</h2>
   <div class="project-grid">
     <!-- MetaMatch Updated -->
-    <div class="project-card">
+    <a class="project-card" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank">
       <div class="project-image dark-bg">
         <img src="images/metamatch_logo.png" alt="MetaMatch Logo">
       </div>
       <div class="project-content">
         <h3>MetaMatch</h3>
-        <p>A RAG-powered engine combining deterministic game logic with Llama 3.2 to eliminate hallucinations in competitive Pokémon strategy.</p>
+        <p>A RAG-powered engine combining deterministic game logic with Llama 3.2 to eliminate hallucinations in competitive Pokémon strategy. Grounds every suggested move in real game data instead of letting the LLM guess.</p>
         <div class="project-stats">
           <span class="project-stat">ChromaDB RAG</span>
           <span class="project-stat">70% Less Hallucination</span>
+          <span class="project-stat">Llama 3.2</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/NamikazeAsh/MetaMatch" target="_blank">→ GitHub</a>
+          <span>→ GitHub</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <!-- MultiHop New -->
-    <div class="project-card">
+    <a class="project-card" href="https://github.com/NamikazeAsh/Multihop-Fact-Verification" target="_blank">
       <div class="project-image purple-bg">
         <img src="images/multihop_logo.png" alt="MultiHop Logo">
       </div>
       <div class="project-content">
         <h3>MultiHop Fact Verification</h3>
-        <p>Retrieval system using BM25 and Dense Retrieval (FAISS/S-BERT) to verify complex claims across multiple Wikipedia articles.</p>
+        <p>Retrieval system using BM25 and Dense Retrieval (FAISS/S-BERT) to verify complex claims across multiple Wikipedia articles. Chains evidence across hops instead of relying on a single matching passage.</p>
         <div class="project-stats">
           <span class="project-stat">FAISS</span>
           <span class="project-stat">S-BERT</span>
+          <span class="project-stat">BM25</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/NamikazeAsh/Multihop-Fact-Verification" target="_blank">→ GitHub</a>
+          <span>→ GitHub</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <!-- PantryPilot New -->
-    <div class="project-card">
+    <a class="project-card" href="https://github.com/abhikothari091/PantryPilot" target="_blank">
       <div class="project-image green-bg">
         <img src="images/pantrypilot_logo.png" alt="PantryPilot Logo">
       </div>
       <div class="project-content">
         <h3>PantryPilot</h3>
-        <p>End-to-end data pipeline & recipe assistant fine-tuned on Llama 3.2 3B using LoRA, featuring automated inventory forecasting.</p>
+        <p>End-to-end data pipeline & recipe assistant fine-tuned on Llama 3.2 3B using LoRA, featuring automated inventory forecasting. Turns raw pantry inventory into personalized recipe suggestions with minimal manual input.</p>
         <div class="project-stats">
           <span class="project-stat">Fine-tuned LLM</span>
           <span class="project-stat">Bias Evaluation</span>
+          <span class="project-stat">LoRA</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/abhikothari091/PantryPilot" target="_blank">→ GitHub</a>
+          <span>→ GitHub</span>
         </div>
       </div>
-    </div>
-    
-    <div class="project-card">
+    </a>
+
+    <a class="project-card" href="https://github.com/NamikazeAsh/SlamDunk-Insights" target="_blank">
       <div class="project-image orange-bg">
         <img src="images/slamdunk_logo.png" alt="SlamDunk Logo">
       </div>
       <div class="project-content">
         <h3>SlamDunk Insights</h3>
-        <p>Clustered 20,000+ NBA games to surface winning strategies and matchup predictions using K-means.</p>
+        <p>Clustered 20,000+ NBA games to surface winning strategies and matchup predictions using K-means. Groups teams by playstyle to reveal matchup edges box scores alone miss.</p>
         <div class="project-stats">
           <span class="project-stat">8% vs Vegas</span>
           <span class="project-stat">Scikit-learn</span>
+          <span class="project-stat">K-means</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/NamikazeAsh/SlamDunk-Insights" target="_blank">→ GitHub</a>
+          <span>→ GitHub</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <!-- Airlytics New -->
-    <div class="project-card">
+    <a class="project-card" href="https://github.com/NamikazeAsh/Airlytics" target="_blank">
       <div class="project-image blue-bg">
         <img src="images/airlytics_logo.png" alt="Airlytics Logo">
       </div>
       <div class="project-content">
         <h3>Airlytics</h3>
-        <p>Personal health analytics dashboard syncing Fitbit data via the Google Health API, with a Groq-powered AI coach and a walk-forward-validated ElasticNet model forecasting next-day readiness.</p>
+        <p>Personal health analytics dashboard syncing Fitbit data via the Google Health API, with a Groq-powered AI coach and a walk-forward-validated ElasticNet model forecasting next-day readiness. Turns raw wearable data into daily, actionable recovery guidance.</p>
         <div class="project-stats">
           <span class="project-stat">16.6% vs Naive Baseline</span>
           <span class="project-stat">Groq AI Coach</span>
+          <span class="project-stat">ElasticNet</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/NamikazeAsh/Airlytics" target="_blank">→ GitHub</a>
+          <span>→ GitHub</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <!-- Casino Retention A/B Test New -->
-    <div class="project-card">
+    <a class="project-card" href="https://github.com/NamikazeAsh/casino-retention-ab-test" target="_blank">
       <div class="project-image dark-bg">
         <img src="images/casio-logo.png" alt="Casino Retention Dashboard Logo">
       </div>
       <div class="project-content">
         <h3>Casino Player Retention & Promo A/B Test</h3>
-        <p>Simulated a 15,000-player casino population and ran a 3-arm A/B test on promo interventions, with a SQLite analytics layer (recursive CTEs, window functions) and a Streamlit dashboard for retention, LTV, and experiment results.</p>
+        <p>Simulated a 15,000-player casino population and ran a 3-arm A/B test on promo interventions, with a SQLite analytics layer (recursive CTEs, window functions) and a Streamlit dashboard for retention, LTV, and experiment results. Built to pressure-test which promo strategy actually pays for itself.</p>
         <div class="project-stats">
           <span class="project-stat">+14% Relative Lift</span>
           <span class="project-stat">Bayesian + Bootstrap Testing</span>
+          <span class="project-stat">Streamlit</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/NamikazeAsh/casino-retention-ab-test" target="_blank">→ GitHub</a>
+          <span>→ GitHub</span>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -805,10 +808,6 @@
     </div>
   </div>
 </section>
-
-<footer>
-  <p>© 2026 Ashwin Satish</p>
-</footer>
 
 <script>
   // Particle animation
