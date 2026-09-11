@@ -113,6 +113,18 @@
       margin-bottom: 1rem;
     }
     
+    .tagline {
+      font-size: 1.2rem;
+      color: var(--sub);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .tagline-link {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
     .cta-buttons {
       display: flex;
       gap: 1rem;
@@ -146,7 +158,7 @@
     }
 
     section {
-      max-width: 1300px;
+      max-width: 1600px;
       margin: 0 auto; 
       padding: 5rem 2rem; 
       position: relative; 
@@ -375,6 +387,13 @@
       color: var(--accent);
     }
     
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 1.5rem;
+    }
+
     .project-links {
       display: flex;
       gap: 1rem;
@@ -524,6 +543,7 @@
   <canvas id="particles"></canvas>
   <div class="hero-content">
     <h1>Ashwin Satish</h1>
+    <p class="tagline">MS Data Science, Northeastern University · Currently building <a href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" class="tagline-link">MetaMatch</a></p>
     <div class="cta-buttons">
       <a class="btn" href="Resume - DS.pdf" download>Download Resume</a>
       <a class="btn btn-outline" href="https://github.com/NamikazeAsh" target="_blank">View GitHub</a>
@@ -537,8 +557,8 @@
     <img class="about-photo" src="images/pfp.png" alt="Ashwin Satish">
     <p class="about-text">
       MS Data Science student at Northeastern.
-      I build things humans are too slow, lazy, or error-prone to do, like detecting disease cells before anyone notices.<br><br> I’m currently working on software to help create Pokémon teams
-      that don’t embarrass their owners.<br><br> My code ships, works, and occasionally makes life a little easier.
+      I apply machine learning to automate slow, repetitive, or error-prone analysis, like detecting disease cells before anyone notices.<br><br> I’m currently working on software to help create Pokémon teams
+      that help their owners win matchups via data-driven team analysis.<br><br> My code ships, works, and occasionally makes life a little easier.
     </p>
   </div>
 </section>
@@ -630,9 +650,15 @@
         <h3>MetaMatch</h3>
         <p>A RAG-powered engine combining deterministic game logic with Llama 3.2 to eliminate hallucinations in competitive Pokémon strategy. Grounds every suggested move in real game data instead of letting the LLM guess.</p>
         <div class="project-stats">
-          <span class="project-stat">ChromaDB RAG</span>
           <span class="project-stat">70% Less Hallucination</span>
-          <span class="project-stat">Llama 3.2</span>
+          <span class="project-stat">Fact-Anchored Reasoning</span>
+          <span class="project-stat">Real-Time Meta Retrieval</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">ChromaDB</span>
+          <span class="skill-tag">Ollama</span>
+          <span class="skill-tag">Docker</span>
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
@@ -649,9 +675,12 @@
         <h3>MultiHop Fact Verification</h3>
         <p>Retrieval system using BM25 and Dense Retrieval (FAISS/S-BERT) to verify complex claims across multiple Wikipedia articles. Chains evidence across hops instead of relying on a single matching passage.</p>
         <div class="project-stats">
-          <span class="project-stat">FAISS</span>
-          <span class="project-stat">S-BERT</span>
-          <span class="project-stat">BM25</span>
+          <span class="project-stat">Multi-Hop Claim Verification</span>
+          <span class="project-stat">Sparse + Dense Retrieval Compared</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">Elasticsearch</span>
+          <span class="skill-tag">Sentence-BERT</span>
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
@@ -668,9 +697,15 @@
         <h3>PantryPilot</h3>
         <p>End-to-end data pipeline & recipe assistant fine-tuned on Llama 3.2 3B using LoRA, featuring automated inventory forecasting. Turns raw pantry inventory into personalized recipe suggestions with minimal manual input.</p>
         <div class="project-stats">
-          <span class="project-stat">Fine-tuned LLM</span>
-          <span class="project-stat">Bias Evaluation</span>
-          <span class="project-stat">LoRA</span>
+          <span class="project-stat">LoRA Fine-Tuned on 11.8K Recipes</span>
+          <span class="project-stat">Bias-Audited Across Cuisines</span>
+          <span class="project-stat">Automated Inventory Forecasting</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Airflow</span>
+          <span class="skill-tag">Docker</span>
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
@@ -686,9 +721,13 @@
         <h3>SlamDunk Insights</h3>
         <p>Clustered 20,000+ NBA games to surface winning strategies and matchup predictions using K-means. Groups teams by playstyle to reveal matchup edges box scores alone miss.</p>
         <div class="project-stats">
-          <span class="project-stat">8% vs Vegas</span>
-          <span class="project-stat">Scikit-learn</span>
-          <span class="project-stat">K-means</span>
+          <span class="project-stat">8% Edge vs Vegas Lines</span>
+          <span class="project-stat">Playstyle-Based Clustering</span>
+          <span class="project-stat">20K+ Games Analyzed</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">XGBoost</span>
+          <span class="skill-tag">Plotly</span>
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
@@ -705,9 +744,15 @@
         <h3>Airlytics</h3>
         <p>Personal health analytics dashboard syncing Fitbit data via the Google Health API, with a Groq-powered AI coach and a walk-forward-validated ElasticNet model forecasting next-day readiness. Turns raw wearable data into daily, actionable recovery guidance.</p>
         <div class="project-stats">
-          <span class="project-stat">16.6% vs Naive Baseline</span>
-          <span class="project-stat">Groq AI Coach</span>
-          <span class="project-stat">ElasticNet</span>
+          <span class="project-stat">16.6% Better Than Naive Baseline</span>
+          <span class="project-stat">AI Coach Grounded in Your Data</span>
+          <span class="project-stat">Walk-Forward Validated Forecasts</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">FastAPI</span>
+          <span class="skill-tag">SQLAlchemy</span>
+          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag">Groq</span>
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
@@ -724,9 +769,14 @@
         <h3>Casino Player Retention & Promo A/B Test</h3>
         <p>Simulated a 15,000-player casino population and ran a 3-arm A/B test on promo interventions, with a SQLite analytics layer (recursive CTEs, window functions) and a Streamlit dashboard for retention, LTV, and experiment results. Built to pressure-test which promo strategy actually pays for itself.</p>
         <div class="project-stats">
-          <span class="project-stat">+14% Relative Lift</span>
-          <span class="project-stat">Bayesian + Bootstrap Testing</span>
-          <span class="project-stat">Streamlit</span>
+          <span class="project-stat">+14% Retention Lift</span>
+          <span class="project-stat">Bayesian + Bootstrap Validated</span>
+          <span class="project-stat">15K-Player Simulated Population</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag">Statsmodels</span>
+          <span class="skill-tag">SciPy</span>
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
@@ -793,8 +843,8 @@
   <div class="contact-section">
     <h2>Let's Connect</h2>
     <div class="contact-links">
-      <a href="mailto:satish.ash@northeastern.edu" class="contact-link">
-        <span>📧</span> satish.ash@northeastern.edu
+      <a href="mailto:ashwinsatishjapps@gmail.com" class="contact-link">
+        <span>📧</span> ashwinsatishjapps@gmail.com
       </a>
       <a href="https://www.linkedin.com/in/ashwin-satish-759b28236/" target="_blank" class="contact-link">
         <span>💼</span> LinkedIn
