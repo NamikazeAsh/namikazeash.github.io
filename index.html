@@ -71,6 +71,21 @@
       transition: opacity .2s;
     }
     nav a:hover { opacity: 1; }
+    nav a.nav-cta {
+      background: var(--accent);
+      color: var(--bg);
+      opacity: 1;
+      padding: .4rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: transform .2s, box-shadow .2s;
+    }
+    nav a.nav-cta:hover {
+      background: var(--accent-hover);
+      color: var(--bg);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--shadow);
+    }
 
     /* Hero with particles */
     header {
@@ -78,7 +93,7 @@
       display: grid;
       place-items: center;
       text-align: center;
-      padding: 2rem;
+      padding: 6rem 2rem 2rem;
       position: relative;
       isolation: isolate;
       background: linear-gradient(135deg, var(--bg) 0%, rgba(102,126,234,.05) 100%);
@@ -201,14 +216,15 @@
       flex-wrap: wrap;
     }
 
-    .about-photo {
-      width: 260px;
-      height: 260px;
+    .hero-photo {
+      width: 293px;
+      height: 293px;
       border-radius: 50%;
       object-fit: cover;
-      flex-shrink: 0;
-      border: 3px solid var(--border);
-      box-shadow: 0 10px 30px var(--shadow);
+      display: block;
+      margin: 0 auto 1.5rem;
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 24px var(--shadow);
     }
 
     .about-text {
@@ -571,13 +587,14 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="Resume - DS.pdf" target="_blank">Resume</a></li>
+    <li><a class="nav-cta" href="Resume - DS.pdf" target="_blank">Resume</a></li>
   </ul>
 </nav>
 
 <header>
   <canvas id="particles"></canvas>
   <div class="hero-content">
+    <img class="hero-photo" src="images/pfp.png" alt="Ashwin Satish" width="293" height="293">
     <h1>Ashwin Satish</h1>
     <p class="tagline">Data Scientist and ML Engineer · USA<br>MS Data Science, Northeastern University · Currently building <a href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" class="tagline-link">MetaMatch</a></p>
     <div class="cta-buttons">
@@ -590,7 +607,6 @@
 <section id="about">
   <h2>About Me</h2>
   <div class="about-content">
-    <img class="about-photo" src="images/pfp.png" alt="Ashwin Satish">
     <p class="about-text">
       MS Data Science student at Northeastern.
       I apply machine learning to automate slow, repetitive, or error-prone analysis, like detecting disease cells before anyone notices.<br><br> I’m currently working on software to help create Pokémon teams
