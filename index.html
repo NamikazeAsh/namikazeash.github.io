@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ashwin Satish</title>
+  <title>Ashwin Satish | Data Scientist and ML Engineer</title>
+  <meta name="description" content="Ashwin Satish, MS Data Science at Northeastern University. Machine learning, NLP and LLM systems. Based in the USA.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ashwin Satish | Data Scientist and ML Engineer">
+  <meta property="og:description" content="MS Data Science at Northeastern University. Machine learning, NLP and LLM systems. Based in the USA.">
+  <meta name="twitter:card" content="summary">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -75,6 +80,7 @@
       text-align: center;
       padding: 2rem;
       position: relative;
+      isolation: isolate;
       background: linear-gradient(135deg, var(--bg) 0%, rgba(102,126,234,.05) 100%);
     }
     
@@ -560,11 +566,12 @@
 <nav>
   <ul>
     <li><a href="#about">About</a></li>
-    <li><a href="#resume">Resume</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="Resume - DS.pdf" target="_blank">Resume</a></li>
   </ul>
 </nav>
 
@@ -572,7 +579,7 @@
   <canvas id="particles"></canvas>
   <div class="hero-content">
     <h1>Ashwin Satish</h1>
-    <p class="tagline">MS Data Science, Northeastern University · Currently building <a href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" class="tagline-link">MetaMatch</a></p>
+    <p class="tagline">Data Scientist and ML Engineer · USA<br>MS Data Science, Northeastern University · Currently building <a href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" class="tagline-link">MetaMatch</a></p>
     <div class="cta-buttons">
       <a class="btn" href="Resume - DS.pdf" download>Resume</a>
       <a class="btn btn-outline" href="https://github.com/NamikazeAsh" target="_blank">View GitHub</a>
@@ -592,25 +599,21 @@
   </div>
 </section>
 
-<section id="resume">
-  <h2>Resume</h2>
-  <div style="position: relative; width: 100%; height: 800px; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px var(--shadow);">
-    <iframe
-      src="Resume - DS.pdf"
-      width="100%"
-      height="100%"
-      style="border: none;"
-      title="Resume PDF">
-    </iframe>
-    <div style="position: absolute; bottom: 20px; right: 20px;">
-      <a class="btn" href="Resume - DS.pdf" download style="font-size: 0.9rem; padding: 0.5rem 1.5rem;">
-        Download PDF
-      </a>
+<section id="education">
+  <h2>Education</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h3>Master of Science, Data Science</h3>
+      <p class="timeline-meta">Northeastern University, Khoury College of Computer Sciences · Sept 2024 to Dec 2026 · Boston, MA · GPA 3.83/4.0</p>
+      <ul>
+        <li>Coursework: Machine Learning, NLP, MLOps, Algorithms, Data Mining, Database Management, Capstone</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <h3>Bachelor of Science, Computer Science</h3>
+      <p class="timeline-meta">Christ University · June 2020 to May 2023 · Bangalore, India · GPA 3.53/4.0</p>
     </div>
   </div>
-  <p style="text-align: center; margin-top: 1rem; color: var(--sub); font-size: 0.9rem;">
-    Can't see the PDF? <a href="Resume - DS.pdf" target="_blank">Open in new tab</a>
-  </p>
 </section>
 
 <section id="experience">
@@ -939,9 +942,6 @@
       <a href="https://github.com/NamikazeAsh" target="_blank" class="contact-link">
         <span>🚀</span> GitHub
       </a>
-      <a href="tel:+18578320951" class="contact-link">
-        <span>📱</span> (857) 832-0951
-      </a>
     </div>
   </div>
 </section>
@@ -951,12 +951,18 @@
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hero = canvas.parentElement;
+  const speed = reduceMotion ? 0.3 : 1; // gentler drift if the OS asks for reduced motion
   const particles = [];
   const particleCount = 50;
-  
+
+  function sizeCanvas() {
+    canvas.width = hero.clientWidth;
+    canvas.height = hero.clientHeight;
+  }
+  sizeCanvas();
+
   class Particle {
     constructor() {
       this.x = Math.random() * canvas.width;
@@ -966,15 +972,15 @@
       this.radius = Math.random() * 2 + 1;
       this.opacity = Math.random() * 0.5 + 0.2;
     }
-    
+
     update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      
+      this.x += this.vx * speed;
+      this.y += this.vy * speed;
+
       if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
       if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
     }
-    
+
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -982,30 +988,52 @@
       ctx.fill();
     }
   }
-  
+
   for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle());
   }
-  
-  function animate() {
+
+  function drawFrame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(particle => {
       particle.update();
       particle.draw();
     });
-    requestAnimationFrame(animate);
   }
-  
-  animate();
-  
-  window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+
+  let rafId = null;
+  function animate() {
+    drawFrame();
+    rafId = requestAnimationFrame(animate);
+  }
+  function start() { if (rafId === null) animate(); }
+  function stop() { if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } }
+
+  // Run only while the hero is on screen and the tab is visible
+  let heroVisible = true;
+  new IntersectionObserver(entries => {
+    heroVisible = entries[0].isIntersecting;
+    heroVisible && !document.hidden ? start() : stop();
+  }).observe(hero);
+  document.addEventListener('visibilitychange', () => {
+    document.hidden || !heroVisible ? stop() : start();
   });
-  
+  start();
+
+  window.addEventListener('resize', () => {
+    const w = canvas.width, h = canvas.height;
+    sizeCanvas();
+    particles.forEach(p => {
+      p.x = Math.min(p.x * canvas.width / w, canvas.width);
+      p.y = Math.min(p.y * canvas.height / h, canvas.height);
+    });
+  });
+
   // Theme toggle
   const btn = document.getElementById('themeToggle');
-  const stored = localStorage.getItem('theme') || 'light';
+  let stored = null;
+  try { stored = localStorage.getItem('theme'); } catch (e) {}
+  if (!stored) stored = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', stored);
   btn.textContent = stored === 'dark' ? '☀️' : '🌙';
   
@@ -1013,7 +1041,7 @@
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
     btn.textContent = next === 'dark' ? '☀️' : '🌙';
   });
   
