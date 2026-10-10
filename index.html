@@ -7,7 +7,12 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ashwin Satish | Data Scientist and ML Engineer">
   <meta property="og:description" content="MS Data Science at Northeastern University. Machine learning, NLP and LLM systems. Based in the USA.">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:url" content="https://namikazeash.github.io/">
+  <meta property="og:image" content="https://namikazeash.github.io/images/og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ashwin Satish, Data Scientist and ML Engineer portfolio">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -217,8 +222,9 @@
     }
 
     .hero-photo {
-      width: 293px;
-      height: 293px;
+      width: min(293px, 100%);
+      height: auto;
+      aspect-ratio: 1;
       border-radius: 50%;
       object-fit: cover;
       display: block;
@@ -306,9 +312,9 @@
     .project-grid {
       display: grid;
       gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
     }
-    
+
     .project-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -354,6 +360,18 @@
       transform: scale(1.06);
     }
     
+    .project-image.screenshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      filter: none;
+    }
+
+    .project-card:hover .project-image.screenshot img {
+      transform: scale(1.03);
+    }
+
     .project-image.dark-bg {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     }
@@ -483,16 +501,18 @@
       border-radius: 8px;
       font-size: .75rem;
       font-weight: 500;
-      white-space: nowrap;
-      opacity: 0;
+      width: max-content;
+      max-width: min(260px, 80vw);
+      white-space: normal;
+      text-align: center;
+      display: none; /* hidden tooltips would otherwise widen the page on phones */
       pointer-events: none;
-      transition: opacity .2s;
       box-shadow: 0 6px 16px var(--shadow);
       z-index: 10;
     }
 
     .skill-tag[data-project]:hover::after {
-      opacity: 1;
+      display: block;
     }
     
     /* Contact */
@@ -566,7 +586,178 @@
       transform: scale(1.1);
     }
     
+    /* Project gallery modal */
+    .gallery-hint {
+      margin-left: auto;
+      opacity: .85;
+    }
+
+    #gallery {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0;
+      width: min(1100px, calc(100vw - 32px));
+      max-height: calc(100vh - 32px);
+      margin: auto;
+      background: var(--bg);
+      color: var(--text);
+      box-shadow: 0 30px 80px rgba(0,0,0,.4);
+      overflow: hidden;
+    }
+
+    #gallery::backdrop {
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(4px);
+    }
+
+    #gallery[open] { display: flex; flex-direction: column; }
+
+    .gallery-head {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .9rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .gallery-head h3 { font-size: 1.1rem; flex: 1; }
+
+    .gallery-head a {
+      font-size: .9rem;
+      font-weight: 600;
+      padding: .35rem .9rem;
+      border-radius: 20px;
+      background: var(--accent);
+      color: white;
+    }
+
+    .gallery-head a:hover { background: var(--accent-hover); color: white; }
+
+    .gallery-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 50%;
+      width: 2.4rem;
+      height: 2.4rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .gallery-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .gallery-stage {
+      position: relative;
+      background: #0b0b14;
+      display: grid;
+      place-items: center;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .gallery-stage img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(100vh - 260px);
+      object-fit: contain;
+    }
+
+    .gallery-stage .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,.55);
+      color: white;
+      border-color: rgba(255,255,255,.2);
+    }
+
+    #gallery [hidden] { display: none; }
+
+    .gallery-prev { left: .8rem; }
+    .gallery-next { right: .8rem; }
+
+    .gallery-caption {
+      padding: .8rem 1.2rem .4rem;
+      color: var(--sub);
+      font-size: .95rem;
+    }
+
+    .gallery-thumbs {
+      display: flex;
+      gap: .5rem;
+      padding: .4rem 1.2rem 1rem;
+      overflow-x: auto;
+    }
+
+    .gallery-thumbs button {
+      flex: 0 0 auto;
+      width: 96px;
+      aspect-ratio: 14 / 9;
+      padding: 0;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: .55;
+      background: none;
+    }
+
+    .gallery-thumbs button[aria-current="true"] { border-color: var(--accent); opacity: 1; }
+    .gallery-thumbs button:hover { opacity: 1; }
+    .gallery-thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    @media (max-width: 600px) {
+      .gallery-stage .gallery-btn { width: 1.9rem; height: 1.9rem; font-size: .95rem; }
+      .gallery-prev { left: .3rem; }
+      .gallery-next { right: .3rem; }
+      .gallery-thumbs button { width: 72px; }
+    }
+
     /* Responsive */
+    .nav-toggle { display: none; }
+
+    @media (max-width: 640px) {
+      nav {
+        display: flex;
+        align-items: center;
+        min-height: 56px;
+        padding: 8px 16px;
+      }
+      .nav-toggle {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text);
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: .5rem 16px 1rem;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 12px 24px var(--shadow);
+      }
+      nav.open ul { display: flex; }
+      nav ul a { display: block; padding: .75rem .25rem; font-size: 1rem; }
+      nav ul a.nav-cta { margin-top: .5rem; padding: .7rem; text-align: center; }
+      #themeToggle { top: 8px; right: 16px; width: 40px; height: 40px; font-size: 1.1rem; }
+    }
+
     @media (max-width: 768px) {
       nav ul { gap: 1rem; font-size: .9rem; }
       .timeline { padding-left: 1rem; }
@@ -579,8 +770,24 @@
 
 <button id="themeToggle" aria-label="Toggle theme">🌙</button>
 
+<dialog id="gallery" aria-labelledby="galleryTitle">
+  <div class="gallery-head">
+    <h3 id="galleryTitle"></h3>
+    <a id="galleryRepo" href="#" target="_blank">→ GitHub</a>
+    <button class="gallery-btn" id="galleryClose" aria-label="Close">✕</button>
+  </div>
+  <div class="gallery-stage">
+    <img id="galleryImg" alt="">
+    <button class="gallery-btn gallery-prev" aria-label="Previous screenshot">‹</button>
+    <button class="gallery-btn gallery-next" aria-label="Next screenshot">›</button>
+  </div>
+  <p class="gallery-caption" id="galleryCaption"></p>
+  <div class="gallery-thumbs" id="galleryThumbs"></div>
+</dialog>
+
 <nav>
-  <ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+  <ul id="navLinks">
     <li><a href="#about">About</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -635,7 +842,7 @@
   <div class="timeline">
     <div class="timeline-item">
       <h3>Machine Learning Developer Intern</h3>
-      <p class="timeline-meta">Gyori Lab for Computational Biomedicine · Jan 2026 - Present · Boston, MA</p>
+      <p class="timeline-meta">Gyori Lab for Computational Biomedicine · Jan 2026 to Present · Boston, MA</p>
       <ul>
         <li>Parsed 35M PubMed records, identifying 278K+ trial-linked publications; built TrialSynth's LLM extraction pipeline turning 13K+ papers into structured KG data</li>
         <li>Designed CoGEx's Trial Result data model: Neo4j graph with 115K+ nodes and 116K+ relationships, exposed via REST APIs & a Flask search interface</li>
@@ -646,7 +853,7 @@
 
     <div class="timeline-item">
       <h3>Machine Learning Researcher</h3>
-      <p class="timeline-meta">Northeastern University · Jan 2025 - Dec 2025 · Boston, MA</p>
+      <p class="timeline-meta">Northeastern University · Jan 2025 to Dec 2025 · Boston, MA</p>
       <ul>
         <li>Boosted true positives 2% → 77% with zero false positives via 7-model CNN ensemble for Lyme cell detection</li>
         <li>Built a Python pipeline for reconstruction & masking of 30,000+ cell images, saving the biology team weeks of manual work</li>
@@ -655,8 +862,8 @@
     </div>
 
     <div class="timeline-item">
-      <h3>Teaching Assistant - DS3000 (Foundations of Data Science)</h3>
-      <p class="timeline-meta">Northeastern University · Aug 2025 - Dec 2025 · Boston, MA</p>
+      <h3>Teaching Assistant, DS3000 (Foundations of Data Science)</h3>
+      <p class="timeline-meta">Northeastern University · Aug 2025 to Dec 2025 · Boston, MA</p>
       <ul>
         <li>Mentored 300+ students in linear algebra & statistics via problem-solving & NumPy demos</li>
       </ul>
@@ -664,7 +871,7 @@
 
     <div class="timeline-item">
       <h3>Data Science Intern</h3>
-      <p class="timeline-meta">CarerAI · July 2023 - May 2024 · Gurgaon, India</p>
+      <p class="timeline-meta">CarerAI · July 2023 to May 2024 · Gurgaon, India</p>
       <ul>
         <li>Prevented 2,000+ unnecessary procedures by uncovering 500+ surgery avoidance cases via KNN analysis of patient records</li>
         <li>Leveraged EHR for a risk-score, improving classification accuracy 26.4% and increasing confidence in surgery avoidance cases</li>
@@ -674,7 +881,7 @@
     
     <div class="timeline-item">
       <h3>Lead Developer</h3>
-      <p class="timeline-meta">Christ Consulting · July 2022 - April 2023 · Bangalore, India</p>
+      <p class="timeline-meta">Christ Consulting · July 2022 to April 2023 · Bangalore, India</p>
       <ul>
         <li>Migrated paper system to AWS with 100,000+ MySQL records</li>
         <li>Improved project success rates 20% via interactive risk dashboards</li>
@@ -687,8 +894,33 @@
 <section id="projects">
   <h2>Projects</h2>
   <div class="project-grid">
+    <!-- MafiaLab -->
+    <a class="project-card" href="https://github.com/NamikazeAsh/MafiaLab" target="_blank" data-gallery="mafialab">
+      <div class="project-image dark-bg screenshot">
+        <img src="images/mafialab_screenshot.webp" alt="MafiaLab viewer showing a day discussion between AI players" loading="lazy">
+      </div>
+      <div class="project-content">
+        <h3>MafiaLab</h3>
+        <p>A game of Mafia played entirely by LLM agents, with a deterministic rules engine, private mafia and role channels, and a live replay viewer. Instead of scoring wins, a judge model rates whether each decision was logical given what that player knew, and fixes are tested by replaying real prompts.</p>
+        <div class="project-stats">
+          <span class="project-stat">196 Decisions Judged Across 30 Games</span>
+          <span class="project-stat">Zero Information Leaks</span>
+          <span class="project-stat">LLM Position Bias Diagnosed</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">Gemini</span>
+          <span class="skill-tag">LLM as Judge</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+        <div class="project-links">
+          <span>→ GitHub</span>
+          <span class="gallery-hint">⤢ View screenshots</span>
+        </div>
+      </div>
+    </a>
+
     <!-- MetaMatch Updated -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank">
+    <a class="project-card" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" data-gallery="metamatch">
       <div class="project-image dark-bg">
         <img src="images/metamatch_logo.png" alt="MetaMatch Logo">
       </div>
@@ -708,12 +940,13 @@
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
+          <span class="gallery-hint">⤢ View screenshots</span>
         </div>
       </div>
     </a>
 
     <!-- MultiHop New -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/Multihop-Fact-Verification" target="_blank">
+    <a class="project-card" href="https://github.com/NamikazeAsh/Multihop-Fact-Verification" target="_blank" data-gallery="multihop">
       <div class="project-image purple-bg">
         <img src="images/multihop_logo.png" alt="MultiHop Logo">
       </div>
@@ -730,12 +963,13 @@
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
+          <span class="gallery-hint">⤢ View diagram</span>
         </div>
       </div>
     </a>
 
     <!-- PantryPilot New -->
-    <a class="project-card" href="https://github.com/abhikothari091/PantryPilot" target="_blank">
+    <a class="project-card" href="https://github.com/abhikothari091/PantryPilot" target="_blank" data-gallery="pantrypilot">
       <div class="project-image green-bg">
         <img src="images/pantrypilot_logo.png" alt="PantryPilot Logo">
       </div>
@@ -755,6 +989,7 @@
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
+          <span class="gallery-hint">⤢ View diagram</span>
         </div>
       </div>
     </a>
@@ -782,7 +1017,7 @@
     </a>
 
     <!-- Airlytics New -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/Airlytics" target="_blank">
+    <a class="project-card" href="https://github.com/NamikazeAsh/Airlytics" target="_blank" data-gallery="airlytics">
       <div class="project-image blue-bg">
         <img src="images/airlytics_logo.png" alt="Airlytics Logo">
       </div>
@@ -790,7 +1025,7 @@
         <h3>Airlytics</h3>
         <p>Personal health analytics dashboard syncing Fitbit data via the Google Health API, with a Groq-powered AI coach and a walk-forward-validated ElasticNet model forecasting next-day readiness. Turns raw wearable data into daily, actionable recovery guidance.</p>
         <div class="project-stats">
-          <span class="project-stat">16.6% Better Than Naive Baseline</span>
+          <span class="project-stat">19.1% Better Than Naive Baseline</span>
           <span class="project-stat">AI Coach Grounded in Your Data</span>
           <span class="project-stat">Walk-Forward Validated Forecasts</span>
         </div>
@@ -802,12 +1037,13 @@
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
+          <span class="gallery-hint">⤢ View screenshots</span>
         </div>
       </div>
     </a>
 
     <!-- Casino Retention A/B Test New -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/casino-retention-ab-test" target="_blank">
+    <a class="project-card" href="https://github.com/NamikazeAsh/casino-retention-ab-test" target="_blank" data-gallery="casino">
       <div class="project-image dark-bg">
         <img src="images/casio-logo.png" alt="Casino Retention Dashboard Logo">
       </div>
@@ -826,12 +1062,13 @@
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
+          <span class="gallery-hint">⤢ View screenshots</span>
         </div>
       </div>
     </a>
 
     <!-- ARXIV Agentic RAG -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/ARXIV-Agentic-Rag-Project" target="_blank">
+    <a class="project-card" href="https://github.com/NamikazeAsh/ARXIV-Agentic-Rag-Project" target="_blank" data-gallery="arxiv">
       <div class="project-image purple-bg">
         <img src="images/arxivrag_logo.svg" alt="ARXIV Agentic RAG Logo">
       </div>
@@ -851,6 +1088,7 @@
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
+          <span class="gallery-hint">⤢ View diagram</span>
         </div>
       </div>
     </a>
@@ -1059,6 +1297,115 @@
     btn.textContent = next === 'dark' ? '☀️' : '🌙';
   });
   
+  // Project screenshot galleries: cards with data-gallery open a modal instead of GitHub
+  const galleries = {
+    mafialab: [
+      ['images/mafialab/day_full.webp', 'Day discussion in full view. Players argue in the open while every role is shown.'],
+      ['images/mafialab/thoughts.webp', 'Private reasoning. Each player\'s hidden thoughts appear as dashed cards next to what they say out loud.'],
+      ['images/mafialab/night.webp', 'Night phase. The mafia kill, doctor save, and detective check are marked over the players.'],
+      ['images/mafialab/mystery.webp', 'Mystery mode, the default. Roles, mafia chat, and night actions stay hidden so you can guess along.'],
+      ['images/mafialab/votes.webp', 'Votes stay secret until everyone has voted, then are revealed together and tallied per day.'],
+      ['images/mafialab/eject.webp', 'A vote out plays a short ejection animation and reveals the role.'],
+      ['images/mafialab/victory.webp', 'The game ends with a banner and every role is revealed.']
+    ],
+    metamatch: [
+      ['images/metamatch/dashboard.webp', 'Paste a Showdown team and every set is parsed into roles, items, abilities and EV spreads, with the archetype and critical weakness computed in code.'],
+      ['images/metamatch/quickmatch.webp', 'Quick Match: pick a core and get partners ranked by Smogon teammate correlation data. Here, Great Tusk and Kingambit.'],
+      ['images/metamatch/threats.webp', 'Meta threats ranked from real ladder usage, with type math showing which team members each threat hits and who can check it.'],
+      ['images/metamatch/replay.webp', 'Replay Auditor parses a Showdown replay into the result, Pokémon remaining, and a turn by turn momentum chart.'],
+      ['images/metamatch/movesearch.webp', 'Move Search finds verified Smogon sets that run every selected move, with matched moves highlighted.'],
+      ['images/metamatch/matrices.webp', 'Defensive matchup matrix computed from the type chart, so weaknesses come from rules rather than model guesses.']
+    ],
+    airlytics: [
+      ['images/airlytics/metrics.webp', 'Nine Fitbit metrics synced through the Google Health API, each with a 30 day average and daily sparkline.'],
+      ['images/airlytics/coach_chat.webp', 'The AI coach explains a low readiness day using z scores computed against your own baselines.'],
+      ['images/airlytics/insights_forecast.webp', 'Generated insights from detected anomalies, and a next day readiness forecast from a walk forward validated ElasticNet model.']
+    ],
+    casino: [
+      ['images/casino/experiment_results.webp', 'A/B/B test results: free spins lifted 30 day retention from 41.0% to 46.8% (p = 6.97e-09), with a bootstrap CI and power analysis.'],
+      ['images/casino/overview.webp', '15,000 simulated players and $2.74M in revenue, split evenly across control, cashback and free spins arms.'],
+      ['images/casino/retention.webp', 'Retention curves overall, by player segment, and by signup cohort.'],
+      ['images/casino/cohort_ltv.webp', 'Cumulative lifetime value heatmap by signup cohort, plus average LTV by segment.'],
+      ['images/casino/segments.webp', 'Whales are 4.9% of players but 75.6% of revenue, shown in the segment table and the revenue concentration curve.']
+    ],
+    pantrypilot: [
+      ['images/pantrypilot/system_diagram.webp', 'End to end system: receipt OCR and synthetic data pipelines, LoRA fine tuning of Llama 3.2 3B with a reward model, a FastAPI and React app, and CI triggered bias and test set evaluation.']
+    ],
+    multihop: [
+      ['images/multihop/pipeline.svg', 'BM25 retrieves 100 candidates, a dense bi encoder reranks them, and RoBERTa MNLI verifies the claim. Reranking raised Recall@10 by 9.5 points.']
+    ],
+    arxiv: [
+      ['images/arxiv/architecture.svg', 'An LLM router sends each question to hybrid vector search with reranking or to a GraphRAG path, and each stage has its own evaluation.']
+    ]
+  };
+
+  const dlg = document.getElementById('gallery');
+  const gImg = document.getElementById('galleryImg');
+  const gCaption = document.getElementById('galleryCaption');
+  const gThumbs = document.getElementById('galleryThumbs');
+  let gItems = [], gIndex = 0;
+
+  function showSlide(i) {
+    gIndex = (i + gItems.length) % gItems.length;
+    const [src, caption] = gItems[gIndex];
+    gImg.src = src;
+    gImg.alt = caption;
+    gCaption.textContent = `${gIndex + 1} / ${gItems.length}  ·  ${caption}`;
+    gCaption.textContent = gItems.length > 1 ? gCaption.textContent : caption;
+    gThumbs.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-current', j === gIndex));
+    gThumbs.children[gIndex].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+
+  document.querySelectorAll('.project-card[data-gallery]').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      gItems = galleries[card.dataset.gallery];
+      document.getElementById('galleryTitle').textContent = card.querySelector('h3').textContent;
+      document.getElementById('galleryRepo').href = card.href;
+      gThumbs.innerHTML = '';
+      gItems.forEach(([src, caption], j) => {
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', `Screenshot ${j + 1}`);
+        b.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
+        b.addEventListener('click', () => showSlide(j));
+        gThumbs.appendChild(b);
+      });
+      const multi = gItems.length > 1;
+      gThumbs.hidden = !multi;
+      dlg.querySelectorAll('.gallery-prev, .gallery-next').forEach(b => { b.hidden = !multi; });
+      dlg.showModal();
+      showSlide(0);
+    });
+  });
+
+  dlg.querySelector('.gallery-prev').addEventListener('click', () => showSlide(gIndex - 1));
+  dlg.querySelector('.gallery-next').addEventListener('click', () => showSlide(gIndex + 1));
+  document.getElementById('galleryClose').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); }); // backdrop click
+  let touchX = null;
+  gImg.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  gImg.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) showSlide(gIndex + (dx < 0 ? 1 : -1));
+  });
+  dlg.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') showSlide(gIndex - 1);
+    if (e.key === 'ArrowRight') showSlide(gIndex + 1);
+  });
+
+  // Mobile nav menu
+  const nav = document.querySelector('nav');
+  const navToggle = document.getElementById('navToggle');
+  function setNav(open) {
+    nav.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open);
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    navToggle.textContent = open ? '✕' : '☰';
+  }
+  navToggle.addEventListener('click', () => setNav(!nav.classList.contains('open')));
+  nav.querySelectorAll('ul a').forEach(a => a.addEventListener('click', () => setNav(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setNav(false); });
+
   // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
