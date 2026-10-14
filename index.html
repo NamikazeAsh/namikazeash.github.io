@@ -427,6 +427,18 @@
       color: var(--accent);
     }
     
+    .project-stat.in-progress {
+      color: #dc2626;
+      background: rgba(220,38,38,.1);
+      border: 1px solid rgba(220,38,38,.35);
+    }
+
+    [data-theme="dark"] .project-stat.in-progress {
+      color: #f87171;
+      background: rgba(248,113,113,.12);
+      border-color: rgba(248,113,113,.4);
+    }
+
     .project-tech {
       display: flex;
       flex-wrap: wrap;
@@ -895,6 +907,31 @@
 <section id="projects">
   <h2>Projects</h2>
   <div class="project-grid">
+    <!-- BoxBox (in progress) -->
+    <a class="project-card" href="https://github.com/NamikazeAsh/BoxBox" target="_blank">
+      <div class="project-image dark-bg screenshot">
+        <img src="images/boxbox_logo.jpg" alt="Formula 1 logo over an aerial view of a circuit" style="object-position: center" loading="lazy">
+      </div>
+      <div class="project-content">
+        <h3>BoxBox: Pit Wall Analytics</h3>
+        <p>Pre race decision tool for Formula 1 that models tyre degradation, simulates pit strategies with Monte Carlo, and predicts finishing order. Tests whether models trained on 2022 to 2025 still hold under the 2026 regulation reset.</p>
+        <div class="project-stats">
+          <span class="project-stat in-progress">In Progress</span>
+          <span class="project-stat">175 Race Weekends, 2019 to 2026</span>
+          <span class="project-stat">186K+ Laps Processed</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">Monte Carlo Simulation</span>
+          <span class="skill-tag">Mixed Effects Models</span>
+          <span class="skill-tag">Gradient Boosting</span>
+          <span class="skill-tag">Distribution Shift Analysis</span>
+        </div>
+        <div class="project-links">
+          <span>→ GitHub</span>
+        </div>
+      </div>
+    </a>
+
     <!-- MafiaLab -->
     <a class="project-card" href="https://github.com/NamikazeAsh/MafiaLab" target="_blank" data-gallery="mafialab">
       <div class="project-image dark-bg screenshot">
@@ -991,28 +1028,6 @@
         <div class="project-links">
           <span>→ GitHub</span>
           <span class="gallery-hint">⤢ View diagram</span>
-        </div>
-      </div>
-    </a>
-
-    <a class="project-card" href="https://github.com/NamikazeAsh/SlamDunk-Insights" target="_blank">
-      <div class="project-image orange-bg">
-        <img src="images/slamdunk_logo.png" alt="SlamDunk Logo">
-      </div>
-      <div class="project-content">
-        <h3>SlamDunk Insights</h3>
-        <p>Clustered 20,000+ NBA games to surface winning strategies and matchup predictions using K-means. Groups teams by playstyle to reveal matchup edges box scores alone miss.</p>
-        <div class="project-stats">
-          <span class="project-stat">8% Edge vs Vegas Lines</span>
-          <span class="project-stat">Playstyle-Based Clustering</span>
-          <span class="project-stat">20K+ Games Analyzed</span>
-        </div>
-        <div class="project-tech">
-          <span class="skill-tag">XGBoost</span>
-          <span class="skill-tag">Plotly</span>
-        </div>
-        <div class="project-links">
-          <span>→ GitHub</span>
         </div>
       </div>
     </a>
@@ -1121,7 +1136,7 @@
       <div class="skill-tags">
         <span class="skill-tag">PyTorch</span>
         <span class="skill-tag" data-project="Northeastern Research (Lyme Cell Detection)">TensorFlow</span>
-        <span class="skill-tag" data-project="SlamDunk Insights, CarerAI">Scikit-learn</span>
+        <span class="skill-tag" data-project="CarerAI">Scikit-learn</span>
         <span class="skill-tag" data-project="Airlytics, Casino Retention & Promo A/B Test">Pandas</span>
         <span class="skill-tag" data-project="Northeastern Research (Lyme Cell Detection)">OpenCV</span>
         <span class="skill-tag" data-project="Northeastern TA (DS3000)">NumPy</span>
@@ -1158,7 +1173,7 @@
       <div class="skill-tags">
         <span class="skill-tag" data-project="Casino Retention & Promo A/B Test, Airlytics">SQL</span>
         <span class="skill-tag">Tableau</span>
-        <span class="skill-tag" data-project="SlamDunk Insights, Casino Retention & Promo A/B Test">Plotly</span>
+        <span class="skill-tag" data-project="Casino Retention & Promo A/B Test">Plotly</span>
         <span class="skill-tag">Spark</span>
         <span class="skill-tag">PySpark</span>
         <span class="skill-tag">Snowflake</span>
