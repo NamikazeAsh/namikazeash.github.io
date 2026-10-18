@@ -151,6 +151,19 @@
       font-weight: 600;
     }
 
+    .tagline-link.boxbox {
+      background: linear-gradient(90deg, #ff1e00, #ff4d3d 55%, #ff8a7a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #ff1e00;
+      font-weight: 700;
+    }
+
+    [data-theme="dark"] .tagline-link.boxbox {
+      background-image: linear-gradient(90deg, #ff1e00, #ff5a4a 50%, #ffffff);
+    }
+
     .cta-buttons {
       display: flex;
       gap: 1rem;
@@ -815,7 +828,7 @@
   <div class="hero-content">
     <img class="hero-photo" src="images/pfp.png" alt="Ashwin Satish" width="293" height="293">
     <h1>Ashwin Satish</h1>
-    <p class="tagline">Data Scientist and ML Engineer · USA<br>MS Data Science, Northeastern University · Currently building <a href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" class="tagline-link">MetaMatch</a></p>
+    <p class="tagline">Data Scientist and ML Engineer · USA<br>MS Data Science, Northeastern University · Currently building <a href="https://github.com/NamikazeAsh/BoxBox" target="_blank" class="tagline-link boxbox">BoxBox</a></p>
     <div class="cta-buttons">
       <a class="btn" href="Resume - DS.pdf" download>Resume</a>
       <a class="btn btn-outline" href="https://github.com/NamikazeAsh" target="_blank">View GitHub</a>
