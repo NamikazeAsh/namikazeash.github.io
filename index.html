@@ -227,11 +227,12 @@
     
     /* About */
     .about-content {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
       align-items: center;
-      justify-content: center;
       gap: 3rem;
-      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     .hero-photo {
@@ -247,21 +248,57 @@
     }
 
     .about-text {
-      text-align: center;
-      max-width: 600px;
       font-size: 1.1rem;
       line-height: 1.8;
       color: var(--sub);
     }
 
-    @media (max-width: 600px) {
-      .about-content { flex-direction: column; }
+    .about-text .about-lead {
+      font-size: 1.6rem;
+      line-height: 1.35;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .about-text strong { color: var(--accent); }
+
+    .now-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .now-card h3 {
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .now-card ul { list-style: none; padding: 0; margin: 0; }
+
+    .now-card li {
+      display: flex;
+      gap: .75rem;
+      font-size: .95rem;
+      line-height: 1.5;
+      color: var(--sub);
+    }
+
+    .now-card li + li { margin-top: .8rem; }
+
+    @media (max-width: 700px) {
+      .about-content { grid-template-columns: 1fr; gap: 2rem; }
     }
 
     /* Experience Timeline */
     .timeline {
       position: relative;
       padding-left: 2rem;
+      margin-left: 1rem;
     }
     
     .timeline:before {
@@ -294,6 +331,32 @@
     .timeline-item h3 {
       font-size: 1.3rem;
       margin-bottom: .5rem;
+    }
+
+    /* logo replaces the timeline dot, centered on the line */
+    .timeline-item.has-logo { padding-left: 2rem; }
+    .timeline-item.has-logo:before { display: none; }
+
+    .edu-logo {
+      position: absolute;
+      top: -25px;
+      left: calc(-2rem - 40px);
+      width: 81px;
+      height: 81px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--bg);
+      border: 3px solid var(--bg);
+      transition: transform .3s;
+    }
+
+    .edu-logo.light-disc { background: #fff; padding: 3px; }
+
+    .timeline-item:hover .edu-logo { transform: scale(1.1); }
+
+    @media (max-width: 768px) {
+      .timeline-item.has-logo { padding-left: 0; }
+      .edu-logo { position: static; display: block; width: 70px; height: 70px; margin-bottom: .6rem; }
     }
     
     .timeline-meta {
@@ -830,7 +893,7 @@
 
     @media (max-width: 768px) {
       nav ul { gap: 1rem; font-size: .9rem; }
-      .timeline { padding-left: 1rem; }
+      .timeline { padding-left: 1rem; margin-left: 0; }
       .timeline:before { display: none; }
       .timeline-item:before { display: none; }
     }
@@ -884,16 +947,27 @@
 <section id="about">
   <h2>About Me</h2>
   <div class="about-content">
-    <p class="about-text">
-      I'm an MS Data Science student at Northeastern, graduating December 2026. I build machine learning systems that automate slow, error prone analysis. My work spans LLM pipelines for biomedical research, a CNN ensemble that detects Lyme disease cells, and MetaMatch, a RAG engine that grounds Pokémon strategy advice in real game data. Right now I'm building BoxBox, which tests whether Formula 1 strategy models trained on 2022 to 2025 still hold up after the 2026 regulation reset. I'm looking for full time data science and ML roles in the USA.
-    </p>
+    <div class="about-text">
+      <p class="about-lead">I build machine learning systems that automate slow, error prone analysis.</p>
+      <p>My work spans LLM pipelines for biomedical research, a CNN ensemble that detects Lyme disease cells, and <strong>MetaMatch</strong>, a RAG engine that grounds Pokémon strategy advice in real game data.</p>
+    </div>
+    <aside class="now-card">
+      <h3>Now</h3>
+      <ul>
+        <li><span>🏎</span> <span>Building <a href="https://github.com/NamikazeAsh/BoxBox" target="_blank" class="tagline-link boxbox">BoxBox</a>, testing whether F1 strategy models survive the 2026 regulation reset</span></li>
+        <li><span>🎓</span> <span>MS Data Science, Northeastern, graduating Dec 2026</span></li>
+        <li><span>💼</span> <span>Open to full time data science & ML roles</span></li>
+        <li><span>📍</span> <span>Boston, MA · Open to relocating anywhere in the USA</span></li>
+      </ul>
+    </aside>
   </div>
 </section>
 
 <section id="education">
   <h2>Education</h2>
   <div class="timeline">
-    <div class="timeline-item">
+    <div class="timeline-item has-logo">
+      <img class="edu-logo" src="images/neu_logo.png" alt="Northeastern University seal" loading="lazy">
       <h3>Master of Science, Data Science</h3>
       <p class="timeline-meta">Northeastern University, Khoury College of Computer Sciences · Sept 2024 to Dec 2026 · Boston, MA · GPA 3.83/4.0</p>
       <ul>
@@ -901,7 +975,8 @@
         <li><a href="Academic%20Transcript.pdf" target="_blank" rel="noopener">View unofficial transcript (PDF)</a></li>
       </ul>
     </div>
-    <div class="timeline-item">
+    <div class="timeline-item has-logo">
+      <img class="edu-logo light-disc" src="images/christ_logo.png" alt="Christ University emblem" loading="lazy">
       <h3>Bachelor of Science, Computer Science</h3>
       <p class="timeline-meta">Christ University · June 2020 to May 2023 · Bangalore, India · GPA 3.53/4.0</p>
     </div>
