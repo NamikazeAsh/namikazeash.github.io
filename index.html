@@ -349,6 +349,63 @@
       box-shadow: 0 20px 40px var(--shadow);
     }
     
+    .project-card.favorite {
+      border-width: 3px;
+      border-color: rgba(234,179,8,.6);
+      box-shadow: 0 0 20px rgba(234,179,8,.35);
+      animation: goldGlow 3s ease-in-out infinite;
+    }
+
+    .project-card.favorite:hover {
+      border-color: #eab308;
+      box-shadow: 0 0 31px rgba(234,179,8,.55), 0 20px 40px var(--shadow);
+    }
+
+    @keyframes goldGlow {
+      50% { box-shadow: 0 0 33px rgba(234,179,8,.55); }
+    }
+
+    .project-card.wip {
+      border-width: 3px;
+      border-color: rgba(255,30,0,.6);
+      box-shadow: 0 0 20px rgba(255,30,0,.35);
+      animation: redGlow 3s ease-in-out infinite;
+    }
+
+    .project-card.wip:hover {
+      border-color: #ff1e00;
+      box-shadow: 0 0 31px rgba(255,30,0,.55), 0 20px 40px var(--shadow);
+    }
+
+    @keyframes redGlow {
+      50% { box-shadow: 0 0 33px rgba(255,30,0,.55); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .project-card.favorite, .project-card.wip { animation: none; }
+    }
+
+    .favorite-badge {
+      position: absolute;
+      top: .8rem;
+      left: .8rem;
+      z-index: 2;
+      padding: .3rem .8rem;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .03em;
+      color: #422006;
+      background: linear-gradient(135deg, #fde68a, #eab308 60%, #ca8a04);
+      box-shadow: 0 2px 10px rgba(234,179,8,.5);
+    }
+
+    .favorite-badge.in-progress {
+      color: #fff;
+      background: linear-gradient(135deg, #ff4d3d, #ff1e00 60%, #b91c1c);
+      box-shadow: 0 2px 10px rgba(255,30,0,.5);
+    }
+
     .project-image {
       width: 100%;
       height: 200px;
@@ -440,18 +497,6 @@
       color: var(--accent);
     }
     
-    .project-stat.in-progress {
-      color: #dc2626;
-      background: rgba(220,38,38,.1);
-      border: 1px solid rgba(220,38,38,.35);
-    }
-
-    [data-theme="dark"] .project-stat.in-progress {
-      color: #f87171;
-      background: rgba(248,113,113,.12);
-      border-color: rgba(248,113,113,.4);
-    }
-
     .project-tech {
       display: flex;
       flex-wrap: wrap;
@@ -868,22 +913,22 @@
   <div class="timeline">
     <div class="timeline-item">
       <h3>Machine Learning Developer Intern</h3>
-      <p class="timeline-meta">Gyori Lab for Computational Biomedicine · Jan 2026 to Present · Boston, MA</p>
+      <p class="timeline-meta">Institute for Experiential AI, Northeastern University · Jan 2026 to Present · Boston, MA</p>
       <ul>
-        <li>Parsed 35M PubMed records, identifying 278K+ trial-linked publications; built TrialSynth's LLM extraction pipeline turning 13K+ papers into structured KG data</li>
-        <li>Designed CoGEx's Trial Result data model: Neo4j graph with 115K+ nodes and 116K+ relationships, exposed via REST APIs & a Flask search interface</li>
-        <li>Improved adverse-event grounding coverage 75.1% → 85.4% via a custom pipeline integrating the Ontology of Adverse Events (OAE)</li>
-        <li>Led a multi-provider LLM benchmark on AWS Bedrock, cutting inference costs 50% while maintaining extraction quality</li>
+        <li>Engineered an LLM pipeline mining 35M records, finding 278K+ publication to trial links and turning 13K+ papers into structured data via strict JSON Schema outputs, with every field traced to its source sentence</li>
+        <li>Benchmarked LLMs on AWS Bedrock for clinical data extraction across cost, recall & token efficiency, cutting per paper inference cost ~65% while retaining 90% recall</li>
+        <li>Architected an entity normalization pipeline mapping 45K+ adverse events to standard medical ontologies, raising coverage 75.1% → 85.4% (+4.6K events) with zero regressions</li>
+        <li>Designed & deployed a clinical trial data model in Neo4j (115K+ nodes, 116K+ relationships), enabling structured retrieval of trial data through REST APIs</li>
       </ul>
     </div>
 
     <div class="timeline-item">
-      <h3>Machine Learning Researcher</h3>
+      <h3>Machine Learning Assistant</h3>
       <p class="timeline-meta">Northeastern University · Jan 2025 to Dec 2025 · Boston, MA</p>
       <ul>
         <li>Boosted true positives 2% → 77% with zero false positives via 7-model CNN ensemble for Lyme cell detection</li>
-        <li>Built a Python pipeline for reconstruction & masking of 30,000+ cell images, saving the biology team weeks of manual work</li>
-        <li>Boosted accuracy 13% via augmentation & L2/dropout regularization, achieving production-ready performance</li>
+        <li>Built a Python image preprocessing pipeline for 30,000+ MATLAB cell images, saving the biology team weeks of manual work</li>
+        <li>Improved ensemble accuracy 13% via augmentation & L2/dropout regularization, validated with k-fold cross validation</li>
       </ul>
     </div>
 
@@ -891,7 +936,7 @@
       <h3>Teaching Assistant, DS3000 (Foundations of Data Science)</h3>
       <p class="timeline-meta">Northeastern University · Aug 2025 to Dec 2025 · Boston, MA</p>
       <ul>
-        <li>Mentored 300+ students in linear algebra & statistics via problem-solving & NumPy demos</li>
+        <li>Mentored & held office hours for 300+ students in machine learning, statistics & NumPy demos</li>
       </ul>
     </div>
 
@@ -921,7 +966,8 @@
   <h2>Projects</h2>
   <div class="project-grid">
     <!-- BoxBox (in progress) -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/BoxBox" target="_blank">
+    <a class="project-card wip" href="https://github.com/NamikazeAsh/BoxBox" target="_blank">
+      <span class="favorite-badge in-progress">● In Progress</span>
       <div class="project-image dark-bg screenshot">
         <img src="images/boxbox_logo.jpg" alt="Formula 1 logo over an aerial view of a circuit" style="object-position: center" loading="lazy">
       </div>
@@ -929,7 +975,6 @@
         <h3>BoxBox: Pit Wall Analytics</h3>
         <p>Pre race decision tool for Formula 1 that models tyre degradation, simulates pit strategies with Monte Carlo, and predicts finishing order. Tests whether models trained on 2022 to 2025 still hold under the 2026 regulation reset.</p>
         <div class="project-stats">
-          <span class="project-stat in-progress">In Progress</span>
           <span class="project-stat">175 Race Weekends, 2019 to 2026</span>
           <span class="project-stat">186K+ Laps Processed</span>
         </div>
@@ -971,16 +1016,17 @@
     </a>
 
     <!-- MetaMatch Updated -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" data-gallery="metamatch">
+    <a class="project-card favorite" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" data-gallery="metamatch">
+      <span class="favorite-badge">★ Personal Favorite</span>
       <div class="project-image dark-bg">
         <img src="images/metamatch_logo.png" alt="MetaMatch Logo">
       </div>
       <div class="project-content">
         <h3>MetaMatch</h3>
-        <p>A RAG-powered engine combining deterministic game logic with Llama 3.2 to eliminate hallucinations in competitive Pokémon strategy. Grounds every suggested move in real game data instead of letting the LLM guess.</p>
+        <p>A dockerized multi agent system pairing Llama 3.2 with a deterministic backend for competitive Pokémon strategy, plus a collaborative filtering recommender for team synergies built on 1M+ aggregated usage stats. Grounds every suggested move in real game data instead of letting the LLM guess.</p>
         <div class="project-stats">
-          <span class="project-stat">70% Less Hallucination</span>
-          <span class="project-stat">Fact-Anchored Reasoning</span>
+          <span class="project-stat">55% Fewer Factual Errors</span>
+          <span class="project-stat">40K+ Strategy Docs Indexed</span>
           <span class="project-stat">Real-Time Meta Retrieval</span>
         </div>
         <div class="project-tech">
@@ -1028,9 +1074,9 @@
         <h3>PantryPilot</h3>
         <p>End-to-end data pipeline & recipe assistant fine-tuned on Llama 3.2 3B using LoRA, featuring automated inventory forecasting. Turns raw pantry inventory into personalized recipe suggestions with minimal manual input.</p>
         <div class="project-stats">
+          <span class="project-stat">2nd Place, MLOps Expo @ Google</span>
+          <span class="project-stat">50% Fewer Dietary Violations</span>
           <span class="project-stat">LoRA Fine-Tuned on 11.8K Recipes</span>
-          <span class="project-stat">Bias-Audited Across Cuisines</span>
-          <span class="project-stat">Automated Inventory Forecasting</span>
         </div>
         <div class="project-tech">
           <span class="skill-tag">React</span>
@@ -1054,7 +1100,7 @@
         <h3>Airlytics</h3>
         <p>Personal health analytics dashboard syncing Fitbit data via the Google Health API, with a Groq-powered AI coach and a walk-forward-validated ElasticNet model forecasting next-day readiness. Turns raw wearable data into daily, actionable recovery guidance.</p>
         <div class="project-stats">
-          <span class="project-stat">19.1% Better Than Naive Baseline</span>
+          <span class="project-stat">16% Better Than Naive Baseline</span>
           <span class="project-stat">AI Coach Grounded in Your Data</span>
           <span class="project-stat">Walk-Forward Validated Forecasts</span>
         </div>
@@ -1160,12 +1206,13 @@
     <div class="skill-category">
       <h3>Cloud & Databases</h3>
       <div class="skill-tags">
-        <span class="skill-tag" data-project="Gyori Lab (AWS Bedrock), Christ Consulting (AWS migration)">AWS</span>
+        <span class="skill-tag" data-project="Experiential AI (AWS Bedrock), Christ Consulting (AWS migration)">AWS</span>
         <span class="skill-tag" data-project="PantryPilot (CI/CD deployment)">GCP</span>
         <span class="skill-tag">Azure</span>
-        <span class="skill-tag" data-project="Gyori Lab (LLM benchmarking)">Bedrock</span>
+        <span class="skill-tag" data-project="Experiential AI (LLM benchmarking)">Bedrock</span>
+        <span class="skill-tag">Lambda</span>
         <span class="skill-tag" data-project="PantryPilot">PostgreSQL</span>
-        <span class="skill-tag" data-project="Gyori Lab (CoGEx Trial Result graph)">Neo4j</span>
+        <span class="skill-tag" data-project="Experiential AI (clinical trial graph)">Neo4j</span>
       </div>
     </div>
 
@@ -1178,6 +1225,7 @@
         <span class="skill-tag" data-project="ARXIV Agentic RAG">Weights & Biases</span>
         <span class="skill-tag">Kubeflow</span>
         <span class="skill-tag">Git</span>
+        <span class="skill-tag">Claude Code</span>
       </div>
     </div>
     
@@ -1217,7 +1265,7 @@
       <a href="mailto:ashwinsatishjapps@gmail.com" class="contact-link">
         <span>📧</span> ashwinsatishjapps@gmail.com
       </a>
-      <a href="https://www.linkedin.com/in/ashwin-satish-759b28236/" target="_blank" class="contact-link">
+      <a href="https://www.linkedin.com/in/ashwinsatishp/" target="_blank" class="contact-link">
         <span>💼</span> LinkedIn
       </a>
       <a href="https://github.com/NamikazeAsh" target="_blank" class="contact-link">
