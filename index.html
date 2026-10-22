@@ -849,6 +849,113 @@
       .gallery-thumbs button { width: 72px; }
     }
 
+    /* Skill search palette */
+    #searchToggle {
+      position: fixed;
+      top: 1.5rem;
+      right: calc(1.5rem + 48px + .6rem);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 100;
+      transition: all .2s;
+      font-size: 1.15rem;
+    }
+
+    #searchToggle:hover { transform: scale(1.1); }
+
+    #search {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 0;
+      width: min(560px, calc(100vw - 32px));
+      margin: 12vh auto auto;
+      background: var(--bg);
+      color: var(--text);
+      box-shadow: 0 30px 80px rgba(0,0,0,.4);
+      overflow: hidden;
+    }
+
+    #search::backdrop {
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(4px);
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 1.05rem;
+      outline: none;
+    }
+
+    #searchResults {
+      max-height: 60vh;
+      overflow-y: auto;
+      padding: .5rem;
+    }
+
+    .search-group {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      padding: .7rem .7rem .3rem;
+    }
+
+    .search-row {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      border-radius: 10px;
+      padding: .6rem .7rem;
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .search-row[aria-selected="true"] { background: var(--card); box-shadow: inset 0 0 0 1px var(--accent); }
+
+    .search-row strong { display: block; font-size: .95rem; }
+
+    .search-row small { display: block; color: var(--sub); font-size: .8rem; }
+
+    .search-chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .35rem; }
+
+    .search-chips .project-stat { background: var(--card); font-size: .72rem; padding: .15rem .6rem; }
+
+    .search-empty {
+      padding: 1rem .7rem;
+      color: var(--sub);
+      font-size: .9rem;
+    }
+
+    .search-empty .skill-tag { cursor: pointer; display: inline-block; margin: .5rem .3rem 0 0; color: var(--text); }
+
+    .search-flash {
+      outline: 3px solid var(--accent);
+      outline-offset: 6px;
+      border-radius: 12px;
+    }
+
+    #skills .skill-tag { cursor: pointer; }
+
+    @media (min-width: 641px) and (max-width: 1000px) {
+      nav ul { padding-right: 110px; } /* keep centered links clear of the fixed buttons */
+    }
+
     /* Responsive */
     .nav-toggle { display: none; }
 
@@ -889,6 +996,7 @@
       nav ul a { display: block; padding: .75rem .25rem; font-size: 1rem; }
       nav ul a.nav-cta { margin-top: .5rem; padding: .7rem; text-align: center; }
       #themeToggle { top: 8px; right: 16px; width: 40px; height: 40px; font-size: 1.1rem; }
+      #searchToggle { top: 8px; right: 64px; width: 40px; height: 40px; font-size: 1rem; }
     }
 
     @media (max-width: 768px) {
@@ -902,6 +1010,12 @@
 <body>
 
 <button id="themeToggle" aria-label="Toggle theme">🌙</button>
+<button id="searchToggle" aria-label="Search skills (press /)" title="Search skills ( / )">🔍</button>
+
+<dialog id="search" aria-label="Search skills">
+  <input id="searchInput" type="text" placeholder="Search a skill, e.g. Python, RAG, Neo4j" autocomplete="off" spellcheck="false" role="combobox" aria-controls="searchResults" aria-expanded="true">
+  <div id="searchResults" role="listbox"></div>
+</dialog>
 
 <dialog id="gallery" aria-labelledby="galleryTitle">
   <div class="gallery-head">
@@ -986,7 +1100,7 @@
 <section id="experience">
   <h2>Experience</h2>
   <div class="timeline">
-    <div class="timeline-item">
+    <div class="timeline-item" data-keywords="Python, LLMs, LangChain, LangGraph, AWS, AWS Bedrock, Neo4j, Graph Database, JSON Schema, Structured Outputs, Information Extraction, NLP, Entity Normalization, Ontologies, REST API, Benchmarking, Biomedical, Clinical Data">
       <h3>Machine Learning Developer Intern</h3>
       <p class="timeline-meta">Institute for Experiential AI, Northeastern University · Jan 2026 to Present · Boston, MA</p>
       <ul>
@@ -997,7 +1111,7 @@
       </ul>
     </div>
 
-    <div class="timeline-item">
+    <div class="timeline-item" data-keywords="Python, CNN, Deep Learning, Ensemble Models, Computer Vision, Image Classification, TensorFlow, OpenCV, MATLAB, Data Augmentation, Regularization, Cross Validation, Image Preprocessing">
       <h3>Machine Learning Assistant</h3>
       <p class="timeline-meta">Northeastern University · Jan 2025 to Dec 2025 · Boston, MA</p>
       <ul>
@@ -1007,7 +1121,7 @@
       </ul>
     </div>
 
-    <div class="timeline-item">
+    <div class="timeline-item" data-keywords="Python, NumPy, Statistics, Machine Learning, Teaching, Mentoring">
       <h3>Teaching Assistant, DS3000 (Foundations of Data Science)</h3>
       <p class="timeline-meta">Northeastern University · Aug 2025 to Dec 2025 · Boston, MA</p>
       <ul>
@@ -1015,7 +1129,7 @@
       </ul>
     </div>
 
-    <div class="timeline-item">
+    <div class="timeline-item" data-keywords="Python, Scikit-learn, KNN, DBSCAN, Clustering, Outlier Detection, EHR, Healthcare, Classification, Risk Scoring">
       <h3>Data Science Intern</h3>
       <p class="timeline-meta">CarerAI · July 2023 to May 2024 · Gurgaon, India</p>
       <ul>
@@ -1025,7 +1139,7 @@
       </ul>
     </div>
     
-    <div class="timeline-item">
+    <div class="timeline-item" data-keywords="AWS, MySQL, SQL, Cloud Migration, Dashboards, Data Visualization">
       <h3>Lead Developer</h3>
       <p class="timeline-meta">Christ Consulting · July 2022 to April 2023 · Bangalore, India</p>
       <ul>
@@ -1041,7 +1155,7 @@
   <h2>Projects</h2>
   <div class="project-grid">
     <!-- BoxBox (in progress) -->
-    <a class="project-card wip" href="https://github.com/NamikazeAsh/BoxBox" target="_blank">
+    <a class="project-card wip" href="https://github.com/NamikazeAsh/BoxBox" target="_blank" data-keywords="Python, LightGBM, Scikit-learn, Pandas, NumPy, SciPy, JAX, NumPyro, Bayesian Modeling, FastF1, Forecasting, Simulation, Formula 1, Sports Analytics">
       <span class="favorite-badge in-progress">● In Progress</span>
       <div class="project-image dark-bg screenshot">
         <img src="images/boxbox_logo.jpg" alt="Formula 1 logo over an aerial view of a circuit" style="object-position: center" loading="lazy">
@@ -1066,7 +1180,7 @@
     </a>
 
     <!-- MafiaLab -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/MafiaLab" target="_blank" data-gallery="mafialab">
+    <a class="project-card" href="https://github.com/NamikazeAsh/MafiaLab" target="_blank" data-keywords="Python, LLMs, Multi Agent, AI Agents, LLM Evaluation, Prompt Engineering, HTML, CSS" data-gallery="mafialab">
       <div class="project-image dark-bg screenshot">
         <img src="images/mafialab_screenshot.webp" alt="MafiaLab viewer showing a day discussion between AI players" loading="lazy">
       </div>
@@ -1091,7 +1205,7 @@
     </a>
 
     <!-- MetaMatch Updated -->
-    <a class="project-card favorite" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" data-gallery="metamatch">
+    <a class="project-card favorite" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" data-keywords="Python, RAG, LLMs, Llama, Multi Agent, AI Agents, Vector Database, Sentence-Transformers, Embeddings, Hugging Face, Transformers, Recommender Systems, Collaborative Filtering, Pandas, Altair, BeautifulSoup, Web Scraping" data-gallery="metamatch">
       <span class="favorite-badge">★ Personal Favorite</span>
       <div class="project-image dark-bg">
         <img src="images/metamatch_logo.png" alt="MetaMatch Logo">
@@ -1118,7 +1232,7 @@
     </a>
 
     <!-- MultiHop New -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/Multihop-Fact-Verification" target="_blank" data-gallery="multihop">
+    <a class="project-card" href="https://github.com/NamikazeAsh/Multihop-Fact-Verification" target="_blank" data-keywords="Python, NLP, Information Retrieval, BM25, FAISS, Dense Retrieval, Sentence-Transformers, RoBERTa, BERT, PyTorch, Transformers, Hugging Face, Fact Verification, NLI, Jupyter" data-gallery="multihop">
       <div class="project-image purple-bg">
         <img src="images/multihop_logo.png" alt="MultiHop Logo">
       </div>
@@ -1141,7 +1255,7 @@
     </a>
 
     <!-- PantryPilot New -->
-    <a class="project-card" href="https://github.com/abhikothari091/PantryPilot" target="_blank" data-gallery="pantrypilot">
+    <a class="project-card" href="https://github.com/abhikothari091/PantryPilot" target="_blank" data-keywords="Python, LLMs, Llama, LoRA, Fine Tuning, PEFT, DPO, PyTorch, Transformers, Hugging Face, JavaScript, Vite, FastAPI, SQLAlchemy, DVC, GCP, Vertex AI, MLflow, Weights & Biases, MLOps, CI/CD, OCR, Gemini, Groq, Great Expectations, Data Pipelines, Prometheus, Forecasting" data-gallery="pantrypilot">
       <div class="project-image green-bg">
         <img src="images/pantrypilot_logo.png" alt="PantryPilot Logo">
       </div>
@@ -1167,7 +1281,7 @@
     </a>
 
     <!-- Airlytics New -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/Airlytics" target="_blank" data-gallery="airlytics">
+    <a class="project-card" href="https://github.com/NamikazeAsh/Airlytics" target="_blank" data-keywords="Python, LLMs, ElasticNet, Time Series, Forecasting, SQL, Alembic, Pandas, REST API, Google Health API, Fitbit, JavaScript, HTML, CSS, Dashboards" data-gallery="airlytics">
       <div class="project-image blue-bg">
         <img src="images/airlytics_logo.png" alt="Airlytics Logo">
       </div>
@@ -1193,7 +1307,7 @@
     </a>
 
     <!-- Casino Retention A/B Test New -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/casino-retention-ab-test" target="_blank" data-gallery="casino">
+    <a class="project-card" href="https://github.com/NamikazeAsh/casino-retention-ab-test" target="_blank" data-keywords="Python, SQL, Streamlit, Plotly, Pandas, NumPy, A/B Testing, Experimentation, Hypothesis Testing, Bayesian Statistics, Bootstrap, Simulation, Cohort Analysis, Retention, LTV, Window Functions, CTEs, Dashboards" data-gallery="casino">
       <div class="project-image dark-bg">
         <img src="images/casio-logo.png" alt="Casino Retention Dashboard Logo">
       </div>
@@ -1218,7 +1332,7 @@
     </a>
 
     <!-- ARXIV Agentic RAG -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/ARXIV-Agentic-Rag-Project" target="_blank" data-gallery="arxiv">
+    <a class="project-card" href="https://github.com/NamikazeAsh/ARXIV-Agentic-Rag-Project" target="_blank" data-keywords="Python, RAG, Agentic RAG, GraphRAG, LLMs, AI Agents, BM25, Hybrid Search, Reciprocal Rank Fusion, Reranking, Cross Encoder, Sentence-Transformers, Transformers, Hugging Face, Knowledge Graph, LLM Evaluation, Pandas, NumPy" data-gallery="arxiv">
       <div class="project-image purple-bg">
         <img src="images/arxivrag_logo.svg" alt="ARXIV Agentic RAG Logo">
       </div>
@@ -1251,13 +1365,13 @@
     <div class="skill-category">
       <h3>GenAI & LLMs</h3>
       <div class="skill-tags">
-        <span class="skill-tag">LangChain</span>
-        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification">Transformers</span>
-        <span class="skill-tag" data-project="MetaMatch">RAG</span>
+        <span class="skill-tag" data-project="Experiential AI">LangChain</span>
+        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification, PantryPilot, ARXIV Agentic RAG">Transformers</span>
+        <span class="skill-tag" data-project="MetaMatch, ARXIV Agentic RAG">RAG</span>
         <span class="skill-tag" data-project="PantryPilot">LoRA</span>
         <span class="skill-tag" data-project="MetaMatch">Ollama</span>
-        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification">Hugging Face</span>
-        <span class="skill-tag" data-project="ARXIV Agentic RAG">LangGraph</span>
+        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification, PantryPilot, ARXIV Agentic RAG">Hugging Face</span>
+        <span class="skill-tag" data-project="Experiential AI">LangGraph</span>
         <span class="skill-tag" data-project="MultiHop Fact Verification">BERT</span>
         <span class="skill-tag">T5</span>
         <span class="skill-tag">AutoML</span>
@@ -1268,12 +1382,12 @@
     <div class="skill-category">
       <h3>Core ML & Data</h3>
       <div class="skill-tags">
-        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag" data-project="PantryPilot (LoRA fine tuning), MultiHop Fact Verification">PyTorch</span>
         <span class="skill-tag" data-project="Northeastern Research (Lyme Cell Detection)">TensorFlow</span>
-        <span class="skill-tag" data-project="CarerAI">Scikit-learn</span>
-        <span class="skill-tag" data-project="Airlytics, Casino Retention & Promo A/B Test">Pandas</span>
+        <span class="skill-tag" data-project="CarerAI, BoxBox">Scikit-learn</span>
+        <span class="skill-tag" data-project="Airlytics, Casino Retention & Promo A/B Test, BoxBox, MetaMatch">Pandas</span>
         <span class="skill-tag" data-project="Northeastern Research (Lyme Cell Detection)">OpenCV</span>
-        <span class="skill-tag" data-project="Northeastern TA (DS3000)">NumPy</span>
+        <span class="skill-tag" data-project="Northeastern TA (DS3000), BoxBox, Casino Retention & Promo A/B Test">NumPy</span>
         <span class="skill-tag">Keras</span>
       </div>
     </div>
@@ -1297,7 +1411,7 @@
         <span class="skill-tag" data-project="MetaMatch, PantryPilot">Docker</span>
         <span class="skill-tag" data-project="PantryPilot">Airflow</span>
         <span class="skill-tag" data-project="PantryPilot">MLflow</span>
-        <span class="skill-tag" data-project="ARXIV Agentic RAG">Weights & Biases</span>
+        <span class="skill-tag" data-project="ARXIV Agentic RAG, PantryPilot">Weights & Biases</span>
         <span class="skill-tag">Kubeflow</span>
         <span class="skill-tag">Git</span>
         <span class="skill-tag">Claude Code</span>
@@ -1307,7 +1421,7 @@
     <div class="skill-category">
       <h3>Analytics & Viz</h3>
       <div class="skill-tags">
-        <span class="skill-tag" data-project="Casino Retention & Promo A/B Test, Airlytics">SQL</span>
+        <span class="skill-tag" data-project="Casino Retention & Promo A/B Test, Airlytics, Christ Consulting (MySQL)">SQL</span>
         <span class="skill-tag">Tableau</span>
         <span class="skill-tag" data-project="Casino Retention & Promo A/B Test">Plotly</span>
         <span class="skill-tag">Spark</span>
@@ -1324,10 +1438,10 @@
         <span class="skill-tag">R</span>
         <span class="skill-tag">C</span>
         <span class="skill-tag">Java</span>
-        <span class="skill-tag">HTML</span>
-        <span class="skill-tag">CSS</span>
+        <span class="skill-tag" data-project="MafiaLab, Airlytics">HTML</span>
+        <span class="skill-tag" data-project="MafiaLab, Airlytics">CSS</span>
         <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag" data-project="MafiaLab, Airlytics, PantryPilot (React)">JavaScript</span>
       </div>
     </div>
   </div>
@@ -1544,6 +1658,149 @@
     if (e.key === 'ArrowLeft') showSlide(gIndex - 1);
     if (e.key === 'ArrowRight') showSlide(gIndex + 1);
   });
+
+  // Skill search: index jobs, projects and skills from the DOM, then match against their keywords
+  const searchDlg = document.getElementById('search');
+  const searchInput = document.getElementById('searchInput');
+  const searchResults = document.getElementById('searchResults');
+  const aliases = {
+    js: ['javascript'], ts: ['typescript'], postgres: ['postgresql'], sklearn: ['scikit-learn'],
+    hf: ['hugging face'], huggingface: ['hugging face'], wandb: ['weights & biases'], llm: ['llms'],
+    k8s: ['kubeflow'], tf: ['tensorflow'], torch: ['pytorch'], ml: ['machine learning'],
+    'google cloud': ['gcp'], ab: ['a/b testing'], 'ab testing': ['a/b testing'], sbert: ['sentence-bert', 'sentence-transformers']
+  };
+  const splitKeywords = s => (s || '').split(',').map(k => k.trim()).filter(Boolean);
+  const searchIndex = [];
+
+  document.querySelectorAll('#experience .timeline-item').forEach(el => searchIndex.push({
+    group: 'Experience', el,
+    title: el.querySelector('h3').textContent,
+    subtitle: el.querySelector('.timeline-meta').textContent.split(' · ')[0],
+    keywords: splitKeywords(el.dataset.keywords)
+  }));
+  document.querySelectorAll('#projects .project-card').forEach(el => searchIndex.push({
+    group: 'Projects', el,
+    title: el.querySelector('h3').textContent,
+    subtitle: '',
+    keywords: [...el.querySelectorAll('.project-tech .skill-tag')].map(t => t.textContent).concat(splitKeywords(el.dataset.keywords))
+  }));
+  document.querySelectorAll('#skills .skill-tag').forEach(el => searchIndex.push({
+    group: 'Skills', el,
+    title: el.textContent,
+    subtitle: el.dataset.project || el.closest('.skill-category').querySelector('h3').textContent,
+    keywords: [el.textContent]
+  }));
+
+  function runSearch(raw) {
+    const q = raw.trim().toLowerCase();
+    if (!q) return [];
+    const terms = [q, ...(aliases[q] || [])];
+    return searchIndex.map(item => {
+      let score = 0;
+      const hits = [];
+      for (const k of item.keywords) {
+        const kl = k.toLowerCase();
+        let s = 0;
+        for (const t of terms) {
+          if (kl === t) s = Math.max(s, 3);
+          else if (t.length > 1 && kl.startsWith(t)) s = Math.max(s, 2);
+          else if (t.length > 1 && kl.includes(t)) s = Math.max(s, 1);
+        }
+        if (s) { score = Math.max(score, s); hits.push(k); }
+      }
+      if (!score && q.length > 1 && item.title.toLowerCase().includes(q)) score = 1;
+      return { item, score, hits: [...new Set(hits)] };
+    }).filter(r => r.score).sort((a, b) => b.score - a.score);
+  }
+
+  let searchRows = [], searchSel = 0;
+
+  function selectRow(i) {
+    if (!searchRows.length) return;
+    searchSel = (i + searchRows.length) % searchRows.length;
+    searchRows.forEach((r, j) => r.setAttribute('aria-selected', j === searchSel));
+    searchRows[searchSel].scrollIntoView({ block: 'nearest' });
+  }
+
+  function renderSearch() {
+    const results = runSearch(searchInput.value);
+    searchResults.innerHTML = '';
+    searchRows = [];
+    if (!results.length) {
+      const empty = document.createElement('div');
+      empty.className = 'search-empty';
+      empty.textContent = searchInput.value.trim() ? `No matches for "${searchInput.value.trim()}". Try:` : 'Type a skill or tool. Try:';
+      const br = document.createElement('br');
+      empty.appendChild(br);
+      ['Python', 'RAG', 'Neo4j', 'AWS', 'Docker', 'PyTorch'].forEach(s => {
+        const chip = document.createElement('span');
+        chip.className = 'skill-tag';
+        chip.textContent = s;
+        chip.addEventListener('click', () => { searchInput.value = s; renderSearch(); searchInput.focus(); });
+        empty.appendChild(chip);
+      });
+      searchResults.appendChild(empty);
+      return;
+    }
+    ['Experience', 'Projects', 'Skills'].forEach(group => {
+      const inGroup = results.filter(r => r.item.group === group);
+      if (!inGroup.length) return;
+      const head = document.createElement('div');
+      head.className = 'search-group';
+      head.textContent = `${group} (${inGroup.length})`;
+      searchResults.appendChild(head);
+      inGroup.forEach(({ item, hits }) => {
+        const row = document.createElement('button');
+        row.className = 'search-row';
+        row.setAttribute('role', 'option');
+        row.innerHTML = '<strong></strong><small></small><div class="search-chips"></div>';
+        row.querySelector('strong').textContent = item.title;
+        row.querySelector('small').textContent = item.subtitle;
+        if (!item.subtitle) row.querySelector('small').remove();
+        if (group !== 'Skills') hits.slice(0, 4).forEach(h => {
+          const chip = document.createElement('span');
+          chip.className = 'project-stat';
+          chip.textContent = h;
+          row.querySelector('.search-chips').appendChild(chip);
+        });
+        row.addEventListener('click', () => goToResult(item));
+        row.addEventListener('mousemove', () => { if (searchRows[searchSel] !== row) selectRow(searchRows.indexOf(row)); });
+        searchResults.appendChild(row);
+        searchRows.push(row);
+      });
+    });
+    selectRow(0);
+  }
+
+  function goToResult(item) {
+    searchDlg.close();
+    item.el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+    item.el.classList.add('search-flash');
+    setTimeout(() => item.el.classList.remove('search-flash'), 1800);
+  }
+
+  function openSearch(prefill) {
+    if (dlg.open) return;
+    if (!searchDlg.open) searchDlg.showModal();
+    if (typeof prefill === 'string') searchInput.value = prefill;
+    searchInput.select();
+    renderSearch();
+  }
+
+  document.getElementById('searchToggle').addEventListener('click', () => openSearch());
+  searchInput.addEventListener('input', renderSearch);
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); selectRow(searchSel + 1); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); selectRow(searchSel - 1); }
+    if (e.key === 'Enter' && searchRows.length) { e.preventDefault(); searchRows[searchSel].click(); }
+  });
+  searchDlg.addEventListener('click', e => { if (e.target === searchDlg) searchDlg.close(); }); // backdrop click
+  document.addEventListener('keydown', e => {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openSearch(); }
+    else if (e.key === '/' && !typing) { e.preventDefault(); openSearch(); }
+  });
+  document.querySelectorAll('#skills .skill-tag').forEach(tag => tag.addEventListener('click', () => openSearch(tag.textContent)));
 
   // Mobile nav menu
   const nav = document.querySelector('nav');
