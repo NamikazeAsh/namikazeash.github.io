@@ -1020,7 +1020,7 @@
 <dialog id="gallery" aria-labelledby="galleryTitle">
   <div class="gallery-head">
     <h3 id="galleryTitle"></h3>
-    <a id="galleryRepo" href="#" target="_blank">→ GitHub</a>
+    <a id="galleryRepo" target="_blank">→ GitHub</a>
     <button class="gallery-btn" id="galleryClose" aria-label="Close">✕</button>
   </div>
   <div class="gallery-stage">
@@ -1050,7 +1050,7 @@
   <div class="hero-content">
     <img class="hero-photo" src="images/pfp.png" alt="Ashwin Satish" width="293" height="293">
     <h1>Ashwin Satish</h1>
-    <p class="tagline">Data Scientist and AI/ML Engineer · USA<br>MS Data Science, Northeastern University · Currently building <a href="https://github.com/NamikazeAsh/BoxBox" target="_blank" class="tagline-link boxbox">BoxBox</a></p>
+    <p class="tagline">Data Scientist and AI/ML Engineer · USA<br>MS Data Science, Northeastern University · Currently building <a href="https://github.com/NamikazeAsh/BoxBox" target="_blank" class="tagline-link boxbox">BoxBox</a> and <a href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" class="tagline-link">MetaMatch</a></p>
     <div class="cta-buttons">
       <a class="btn" href="Resume - DS.pdf" download>Resume</a>
       <a class="btn btn-outline" href="https://github.com/NamikazeAsh" target="_blank">View GitHub</a>
@@ -1063,12 +1063,13 @@
   <div class="about-content">
     <div class="about-text">
       <p class="about-lead">I build machine learning systems that automate slow, error prone analysis.</p>
-      <p>My work spans LLM pipelines for biomedical research, a CNN ensemble that detects Lyme disease cells, and <strong>MetaMatch</strong>, a RAG engine that grounds Pokémon strategy advice in real game data.</p>
+      <p>My work spans LLM pipelines for biomedical research and a CNN ensemble that detects Lyme disease cells. On the side I'm building <strong>BoxBox</strong>, an F1 strategy simulator, and <strong>MetaMatch</strong>, a multi agent system that grounds Pokémon strategy advice in real game data.</p>
     </div>
     <aside class="now-card">
       <h3>Now</h3>
       <ul>
         <li><span>🏎</span> <span>Building <a href="https://github.com/NamikazeAsh/BoxBox" target="_blank" class="tagline-link boxbox">BoxBox</a>, testing whether F1 strategy models survive the 2026 regulation reset</span></li>
+        <li><span>🎮</span> <span>Building <a href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" class="tagline-link">MetaMatch</a>, grounding LLM strategy advice for competitive Pokémon in real game data</span></li>
         <li><span>🎓</span> <span>MS Data Science, Northeastern, graduating Dec 2026</span></li>
         <li><span>💼</span> <span>Open to full time data science & ML roles</span></li>
         <li><span>📍</span> <span>Boston, MA · Open to relocating anywhere in the USA</span></li>
@@ -1624,6 +1625,8 @@
 
   document.querySelectorAll('.project-card[data-gallery]').forEach(card => {
     card.addEventListener('click', e => {
+      // Let modified clicks and the card's own "→ GitHub" label open the repo
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.target.closest('.project-links span:not(.gallery-hint)')) return;
       e.preventDefault();
       gItems = galleries[card.dataset.gallery];
       document.getElementById('galleryTitle').textContent = card.querySelector('h3').textContent;
