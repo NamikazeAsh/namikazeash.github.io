@@ -457,8 +457,24 @@
       50% { box-shadow: 0 0 33px rgba(255,30,0,.55); }
     }
 
+    .project-card.award {
+      border-width: 3px;
+      border-color: rgba(66,133,244,.6);
+      box-shadow: 0 0 20px rgba(66,133,244,.35);
+      animation: blueGlow 3s ease-in-out infinite;
+    }
+
+    .project-card.award:hover {
+      border-color: #4285f4;
+      box-shadow: 0 0 31px rgba(66,133,244,.55), 0 20px 40px var(--shadow);
+    }
+
+    @keyframes blueGlow {
+      50% { box-shadow: 0 0 33px rgba(66,133,244,.55); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .project-card.favorite, .project-card.wip { animation: none; }
+      .project-card.favorite, .project-card.wip, .project-card.award { animation: none; }
     }
 
     .favorite-badge {
@@ -474,6 +490,12 @@
       color: #422006;
       background: linear-gradient(135deg, #fde68a, #eab308 60%, #ca8a04);
       box-shadow: 0 2px 10px rgba(234,179,8,.5);
+    }
+
+    .favorite-badge.award {
+      color: #fff;
+      background: linear-gradient(135deg, #6ea8ff, #4285f4 60%, #1a5fd0);
+      box-shadow: 0 2px 10px rgba(66,133,244,.5);
     }
 
     .favorite-badge.in-progress {
@@ -1168,6 +1190,35 @@
 <section id="projects">
   <h2>Projects</h2>
   <div class="project-grid">
+    <!-- MetaMatch Updated -->
+    <a class="project-card favorite" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" data-keywords="Python, RAG, Hybrid Search, BM25, Reciprocal Rank Fusion, Dense Retrieval, LLMs, Llama, Multi Agent, AI Agents, Tool Use, Hallucination Detection, Guardrails, LLM Evaluation, Benchmarking, Semantic Parsing, Information Extraction, Vector Database, ChromaDB, Sentence-Transformers, Embeddings, Hugging Face, Transformers, Recommender Systems, Collaborative Filtering, Node.js, SQLite, Pandas, Altair, BeautifulSoup, Web Scraping, CI/CD, GitHub Actions, pytest" data-gallery="metamatch">
+      <span class="favorite-badge">★ Personal Favorite</span>
+      <div class="project-image dark-bg">
+        <img src="images/metamatch_logo.png" alt="MetaMatch Logo">
+      </div>
+      <div class="project-content">
+        <h3>MetaMatch</h3>
+        <p>A local AI coach for competitive Pokémon where the engine does the thinking and Llama 3.2 does the talking. The Smogon damage calculator computes every fact, a verifier rejects any answer that contradicts it, and strategy advice is grounded by hybrid BM25 plus dense retrieval over Smogon analyses and ladder stats. An industry grade pipeline with 184 tests, three benchmarks and a CI regression gate.</p>
+        <div class="project-stats">
+          <span class="project-stat">18% to 97.5% Accuracy, Same 3B Model</span>
+          <span class="project-stat">Hybrid RAG: 74% to 94% Top Hit</span>
+          <span class="project-stat">0.93 F1 Parsing Real Player Questions</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">Ollama</span>
+          <span class="skill-tag">ChromaDB</span>
+          <span class="skill-tag">Hybrid Search (RRF)</span>
+          <span class="skill-tag">Sentence-Transformers</span>
+          <span class="skill-tag">Hallucination Guardrails</span>
+          <span class="skill-tag">LLM Evaluation</span>
+        </div>
+        <div class="project-links">
+          <span>→ GitHub</span>
+          <span class="gallery-hint">⤢ View screenshots</span>
+        </div>
+      </div>
+    </a>
+
     <!-- BoxBox (in progress) -->
     <a class="project-card wip" href="https://github.com/NamikazeAsh/BoxBox" target="_blank" data-keywords="Python, LightGBM, Scikit-learn, Pandas, NumPy, SciPy, JAX, NumPyro, Bayesian Modeling, FastF1, Forecasting, Simulation, Formula 1, Sports Analytics">
       <span class="favorite-badge in-progress">● In Progress</span>
@@ -1193,6 +1244,35 @@
       </div>
     </a>
 
+    <!-- PantryPilot New -->
+    <a class="project-card award" href="https://github.com/abhikothari091/PantryPilot" target="_blank" data-keywords="Python, React, LLMs, Llama, LoRA, Fine Tuning, PEFT, DPO, PyTorch, Transformers, Hugging Face, JavaScript, Vite, FastAPI, SQLAlchemy, DVC, GCP, Vertex AI, MLflow, Weights & Biases, MLOps, CI/CD, OCR, Gemini, Groq, Great Expectations, Data Pipelines, Prometheus, Forecasting" data-gallery="pantrypilot">
+      <span class="favorite-badge award">◆ 2nd Place, Google AI Expo</span>
+      <div class="project-image green-bg">
+        <img src="images/pantrypilot_logo.png" alt="PantryPilot Logo">
+      </div>
+      <div class="project-content">
+        <h3>PantryPilot</h3>
+        <p>Personalized recipe assistant built on Llama 3.2 3B, fine tuned with LoRA, evaluated and served on GCP through CI/CD, with automated inventory forecasting, DPO preference labels from a Llama 3 70B teacher model and a VLM for receipt OCR. Turns raw pantry inventory into personalized recipe suggestions with minimal manual input.</p>
+        <div class="project-stats">
+          <span class="project-stat">2nd Place, MLOps Expo @ Google</span>
+          <span class="project-stat">50% Fewer Dietary Violations</span>
+          <span class="project-stat">LoRA Fine-Tuned on 11.8K Recipes</span>
+        </div>
+        <div class="project-tech">
+          <span class="skill-tag">LoRA</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Airflow</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">GCP</span>
+          <span class="skill-tag">Ollama</span>
+        </div>
+        <div class="project-links">
+          <span>→ GitHub</span>
+          <span class="gallery-hint">⤢ View diagram</span>
+        </div>
+      </div>
+    </a>
+
     <!-- MafiaLab -->
     <a class="project-card" href="https://github.com/NamikazeAsh/MafiaLab" target="_blank" data-keywords="Python, LLMs, Multi Agent, AI Agents, LLM Evaluation, Prompt Engineering, HTML, CSS" data-gallery="mafialab">
       <div class="project-image dark-bg screenshot">
@@ -1210,34 +1290,6 @@
           <span class="skill-tag">Gemini</span>
           <span class="skill-tag">LLM as Judge</span>
           <span class="skill-tag">JavaScript</span>
-        </div>
-        <div class="project-links">
-          <span>→ GitHub</span>
-          <span class="gallery-hint">⤢ View screenshots</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- MetaMatch Updated -->
-    <a class="project-card favorite" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" data-keywords="Python, RAG, LLMs, Llama, Multi Agent, AI Agents, Vector Database, Sentence-Transformers, Embeddings, Hugging Face, Transformers, Recommender Systems, Collaborative Filtering, Pandas, Altair, BeautifulSoup, Web Scraping" data-gallery="metamatch">
-      <span class="favorite-badge">★ Personal Favorite</span>
-      <div class="project-image dark-bg">
-        <img src="images/metamatch_logo.png" alt="MetaMatch Logo">
-      </div>
-      <div class="project-content">
-        <h3>MetaMatch</h3>
-        <p>A dockerized multi agent system pairing Llama 3.2 with a deterministic backend for competitive Pokémon strategy, plus a collaborative filtering recommender for team synergies built on 1M+ aggregated usage stats ingested through a Python ETL pipeline. A RAG pipeline over 40K+ strategy docs grounds every suggested move in real game data instead of letting the LLM guess.</p>
-        <div class="project-stats">
-          <span class="project-stat">55% Fewer Factual Errors</span>
-          <span class="project-stat">40K+ Strategy Docs Indexed</span>
-          <span class="project-stat">Real-Time Meta Retrieval</span>
-        </div>
-        <div class="project-tech">
-          <span class="skill-tag">Ollama</span>
-          <span class="skill-tag">Streamlit</span>
-          <span class="skill-tag">ChromaDB</span>
-          <span class="skill-tag">Sentence-Transformers</span>
-          <span class="skill-tag">Docker</span>
         </div>
         <div class="project-links">
           <span>→ GitHub</span>
@@ -1269,62 +1321,6 @@
       </div>
     </a>
 
-    <!-- PantryPilot New -->
-    <a class="project-card" href="https://github.com/abhikothari091/PantryPilot" target="_blank" data-keywords="Python, React, LLMs, Llama, LoRA, Fine Tuning, PEFT, DPO, PyTorch, Transformers, Hugging Face, JavaScript, Vite, FastAPI, SQLAlchemy, DVC, GCP, Vertex AI, MLflow, Weights & Biases, MLOps, CI/CD, OCR, Gemini, Groq, Great Expectations, Data Pipelines, Prometheus, Forecasting" data-gallery="pantrypilot">
-      <div class="project-image green-bg">
-        <img src="images/pantrypilot_logo.png" alt="PantryPilot Logo">
-      </div>
-      <div class="project-content">
-        <h3>PantryPilot</h3>
-        <p>Personalized recipe assistant built on Llama 3.2 3B, fine tuned with LoRA, evaluated and served on GCP through CI/CD, with automated inventory forecasting, DPO preference labels from a Llama 3 70B teacher model and a VLM for receipt OCR. Turns raw pantry inventory into personalized recipe suggestions with minimal manual input.</p>
-        <div class="project-stats">
-          <span class="project-stat">2nd Place, MLOps Expo @ Google</span>
-          <span class="project-stat">50% Fewer Dietary Violations</span>
-          <span class="project-stat">LoRA Fine-Tuned on 11.8K Recipes</span>
-        </div>
-        <div class="project-tech">
-          <span class="skill-tag">LoRA</span>
-          <span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">Airflow</span>
-          <span class="skill-tag">Docker</span>
-          <span class="skill-tag">GCP</span>
-          <span class="skill-tag">Ollama</span>
-        </div>
-        <div class="project-links">
-          <span>→ GitHub</span>
-          <span class="gallery-hint">⤢ View diagram</span>
-        </div>
-      </div>
-    </a>
-
-    <!-- Airlytics New -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/Airlytics" target="_blank" data-keywords="Python, LLMs, ElasticNet, Time Series, Forecasting, SQL, Alembic, Pandas, REST API, Google Health API, Fitbit, JavaScript, HTML, CSS, Dashboards" data-gallery="airlytics">
-      <div class="project-image blue-bg">
-        <img src="images/airlytics_logo.png" alt="Airlytics Logo">
-      </div>
-      <div class="project-content">
-        <h3>Airlytics</h3>
-        <p>Personal health analytics dashboard syncing Fitbit data via the Google Health API, with a Groq-powered AI coach and a walk-forward-validated ElasticNet model forecasting next-day readiness. Turns raw wearable data into daily, actionable recovery guidance, with the coach validated on tool call accuracy and grounding rate.</p>
-        <div class="project-stats">
-          <span class="project-stat">16% Better Than Naive Baseline</span>
-          <span class="project-stat">AI Coach Grounded in Your Data</span>
-          <span class="project-stat">Walk-Forward Validated Forecasts</span>
-        </div>
-        <div class="project-tech">
-          <span class="skill-tag">FastAPI</span>
-          <span class="skill-tag">SQLAlchemy</span>
-          <span class="skill-tag">SQLite</span>
-          <span class="skill-tag">Groq</span>
-          <span class="skill-tag">Scikit-learn</span>
-          <span class="skill-tag">Pandas</span>
-        </div>
-        <div class="project-links">
-          <span>→ GitHub</span>
-          <span class="gallery-hint">⤢ View screenshots</span>
-        </div>
-      </div>
-    </a>
-
     <!-- Casino Retention A/B Test New -->
     <a class="project-card" href="https://github.com/NamikazeAsh/casino-retention-ab-test" target="_blank" data-keywords="Python, SQL, Statsmodels, Plotly, Pandas, NumPy, A/B Testing, Experimentation, Hypothesis Testing, Bayesian Statistics, Bootstrap, Simulation, Cohort Analysis, Retention, LTV, Window Functions, CTEs, Dashboards" data-gallery="casino">
       <div class="project-image dark-bg">
@@ -1351,32 +1347,6 @@
         </div>
       </div>
     </a>
-
-    <!-- ARXIV Agentic RAG -->
-    <a class="project-card" href="https://github.com/NamikazeAsh/ARXIV-Agentic-Rag-Project" target="_blank" data-keywords="Python, RAG, Agentic RAG, GraphRAG, LLMs, AI Agents, BM25, Hybrid Search, Reciprocal Rank Fusion, Reranking, Cross Encoder, Sentence-Transformers, Transformers, Hugging Face, Knowledge Graph, LLM Evaluation, Pandas, NumPy" data-gallery="arxiv">
-      <div class="project-image purple-bg">
-        <img src="images/arxivrag_logo.svg" alt="ARXIV Agentic RAG Logo">
-      </div>
-      <div class="project-content">
-        <h3>ARXIV Agentic RAG</h3>
-        <p>An agentic RAG system over arXiv papers that fuses BM25 and dense retrieval via Reciprocal Rank Fusion, reranks with a cross-encoder, and routes each query through an LLM-driven agent to either vector search or a GraphRAG path for multi-hop questions.</p>
-        <div class="project-stats">
-          <span class="project-stat">LLM-Routed Retrieval</span>
-          <span class="project-stat">Hybrid Search + Reranking</span>
-          <span class="project-stat">GraphRAG for Multi-Hop Q&A</span>
-        </div>
-        <div class="project-tech">
-          <span class="skill-tag">OpenSearch</span>
-          <span class="skill-tag">LiteLLM</span>
-          <span class="skill-tag">NetworkX</span>
-          <span class="skill-tag">Weights & Biases</span>
-        </div>
-        <div class="project-links">
-          <span>→ GitHub</span>
-          <span class="gallery-hint">⤢ View diagram</span>
-        </div>
-      </div>
-    </a>
   </div>
 </section>
 
@@ -1387,17 +1357,17 @@
       <h3>GenAI & LLMs</h3>
       <div class="skill-tags">
         <span class="skill-tag" data-project="Experiential AI">LangChain</span>
-        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification, PantryPilot, ARXIV Agentic RAG">Transformers</span>
-        <span class="skill-tag" data-project="MetaMatch, ARXIV Agentic RAG">RAG</span>
+        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification, PantryPilot">Transformers</span>
+        <span class="skill-tag" data-project="MetaMatch">RAG</span>
         <span class="skill-tag" data-project="PantryPilot">LoRA</span>
         <span class="skill-tag" data-project="MetaMatch, PantryPilot">Ollama</span>
-        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification, PantryPilot, ARXIV Agentic RAG">Hugging Face</span>
+        <span class="skill-tag" data-project="MetaMatch, MultiHop Fact Verification, PantryPilot">Hugging Face</span>
         <span class="skill-tag" data-project="Experiential AI">LangGraph</span>
         <span class="skill-tag" data-project="MultiHop Fact Verification">BERT</span>
         <span class="skill-tag">T5</span>
         <span class="skill-tag">AutoML</span>
         <span class="skill-tag">PydanticAI</span>
-        <span class="skill-tag" data-project="MetaMatch, MafiaLab, ARXIV Agentic RAG">Agentic AI</span>
+        <span class="skill-tag" data-project="MetaMatch, MafiaLab">Agentic AI</span>
         <span class="skill-tag">MCP</span>
       </div>
     </div>
@@ -1407,8 +1377,8 @@
       <div class="skill-tags">
         <span class="skill-tag" data-project="PantryPilot (LoRA fine tuning), MultiHop Fact Verification">PyTorch</span>
         <span class="skill-tag" data-project="Northeastern Research (Lyme Cell Detection)">TensorFlow</span>
-        <span class="skill-tag" data-project="CarerAI, BoxBox, Airlytics">Scikit-learn</span>
-        <span class="skill-tag" data-project="Airlytics, Casino Retention & Promo A/B Test, BoxBox, MetaMatch">Pandas</span>
+        <span class="skill-tag" data-project="CarerAI, BoxBox">Scikit-learn</span>
+        <span class="skill-tag" data-project="Casino Retention & Promo A/B Test, BoxBox, MetaMatch">Pandas</span>
         <span class="skill-tag" data-project="Northeastern Research (Lyme Cell Detection)">OpenCV</span>
         <span class="skill-tag" data-project="Northeastern TA (DS3000), BoxBox, Casino Retention & Promo A/B Test">NumPy</span>
         <span class="skill-tag">Keras</span>
@@ -1433,13 +1403,13 @@
     <div class="skill-category">
       <h3>MLOps & Tooling</h3>
       <div class="skill-tags">
-        <span class="skill-tag" data-project="MetaMatch, PantryPilot">Docker</span>
+        <span class="skill-tag" data-project="PantryPilot">Docker</span>
         <span class="skill-tag" data-project="PantryPilot">Airflow</span>
         <span class="skill-tag" data-project="PantryPilot">MLflow</span>
-        <span class="skill-tag" data-project="ARXIV Agentic RAG, PantryPilot">Weights & Biases</span>
+        <span class="skill-tag" data-project="PantryPilot">Weights & Biases</span>
         <span class="skill-tag">Kubeflow</span>
         <span class="skill-tag">Git</span>
-        <span class="skill-tag">pytest</span>
+        <span class="skill-tag" data-project="MetaMatch">pytest</span>
         <span class="skill-tag">Claude Code</span>
       </div>
     </div>
@@ -1447,7 +1417,7 @@
     <div class="skill-category">
       <h3>Analytics & Viz</h3>
       <div class="skill-tags">
-        <span class="skill-tag" data-project="Casino Retention & Promo A/B Test, Airlytics, Christ Consulting (MySQL)">SQL</span>
+        <span class="skill-tag" data-project="Casino Retention & Promo A/B Test, Christ Consulting (MySQL)">SQL</span>
         <span class="skill-tag">Tableau</span>
         <span class="skill-tag" data-project="Casino Retention & Promo A/B Test">Plotly</span>
         <span class="skill-tag">Spark</span>
@@ -1464,11 +1434,11 @@
         <span class="skill-tag">R</span>
         <span class="skill-tag">C</span>
         <span class="skill-tag">Java</span>
-        <span class="skill-tag" data-project="MafiaLab, Airlytics">HTML</span>
-        <span class="skill-tag" data-project="MafiaLab, Airlytics">CSS</span>
+        <span class="skill-tag" data-project="MafiaLab">HTML</span>
+        <span class="skill-tag" data-project="MafiaLab">CSS</span>
         <span class="skill-tag">TypeScript</span>
         <span class="skill-tag" data-project="Experiential AI (clinical trial graph)">Cypher</span>
-        <span class="skill-tag" data-project="MafiaLab, Airlytics, PantryPilot (React)">JavaScript</span>
+        <span class="skill-tag" data-project="MafiaLab, PantryPilot (React)">JavaScript</span>
       </div>
     </div>
   </div>
@@ -1603,16 +1573,14 @@
     ],
     metamatch: [
       ['images/metamatch/dashboard.webp', 'Paste a Showdown team and every set is parsed into roles, items, abilities and EV spreads, with the archetype and critical weakness computed in code.'],
+      ['images/metamatch/chat_oak.webp', 'Professor Oak opens with an engine check computed by the damage calculator, then explains it. Advice that contradicts the engine is rejected before you see it.'],
+      ['images/metamatch/chat_engine.webp', 'Fact questions are answered by the engine, not the model: the speed stat, the opponent spread from ladder data, and a verdict the LLM can only explain.'],
+      ['images/metamatch/metaflash.webp', 'MetaFlash, a front page for the current ladder: rank changes, standard sets and six month trends, refreshed every month from Smogon usage stats.'],
       ['images/metamatch/quickmatch.webp', 'Quick Match: pick a core and get partners ranked by Smogon teammate correlation data. Here, Great Tusk and Kingambit.'],
       ['images/metamatch/threats.webp', 'Meta threats ranked from real ladder usage, with type math showing which team members each threat hits and who can check it.'],
       ['images/metamatch/replay.webp', 'Replay Auditor parses a Showdown replay into the result, Pokémon remaining, and a turn by turn momentum chart.'],
       ['images/metamatch/movesearch.webp', 'Move Search finds verified Smogon sets that run every selected move, with matched moves highlighted.'],
       ['images/metamatch/matrices.webp', 'Defensive matchup matrix computed from the type chart, so weaknesses come from rules rather than model guesses.']
-    ],
-    airlytics: [
-      ['images/airlytics/metrics.webp', 'Nine Fitbit metrics synced through the Google Health API, each with a 30 day average and daily sparkline.'],
-      ['images/airlytics/coach_chat.webp', 'The AI coach explains a low readiness day using z scores computed against your own baselines.'],
-      ['images/airlytics/insights_forecast.webp', 'Generated insights from detected anomalies, and a next day readiness forecast from a walk forward validated ElasticNet model.']
     ],
     casino: [
       ['images/casino/experiment_results.webp', 'A/B/B test results: free spins lifted 30 day retention from 41.0% to 46.8% (p = 6.97e-09), with a bootstrap CI and power analysis.'],
@@ -1627,9 +1595,6 @@
     multihop: [
       ['images/multihop/pipeline.svg', 'BM25 retrieves 100 candidates, a dense bi encoder reranks them, and RoBERTa MNLI verifies the claim. Reranking raised Recall@10 by 9.5 points.']
     ],
-    arxiv: [
-      ['images/arxiv/architecture.svg', 'An LLM router sends each question to hybrid vector search with reranking or to a GraphRAG path, and each stage has its own evaluation.']
-    ]
   };
 
   const dlg = document.getElementById('gallery');
