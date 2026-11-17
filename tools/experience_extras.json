@@ -1,0 +1,23 @@
+{
+  "_comment": "Hand maintained. 'keywords' maps a resume header ('Org | Title', exactly as on the resume) to site search keywords. 'extras' are site only entries that are not on the resume.",
+  "keywords": {
+    "Institute for Experiential AI, Northeastern University | Machine Learning Developer Intern": "Python, LLMs, LangChain, LangGraph, AWS, AWS Bedrock, Neo4j, Graph Database, JSON Schema, Structured Outputs, Information Extraction, NLP, Entity Normalization, Ontologies, REST API, Benchmarking, Biomedical, Clinical Data",
+    "Northeastern University | Machine Learning Assistant": "Python, CNN, Deep Learning, Ensemble Models, Computer Vision, Image Classification, TensorFlow, OpenCV, MATLAB, Data Augmentation, Regularization, Cross Validation, Image Preprocessing, Teaching, Mentoring, Statistics",
+    "CarerAI | Data Science Intern": "Python, Scikit-learn, KNN, DBSCAN, Clustering, Outlier Detection, EHR, Healthcare, Classification, Risk Scoring"
+  },
+  "extras": [
+    {
+      "title": "Lead Developer",
+      "org": "Christ Consulting",
+      "start": "July 2022",
+      "end": "April 2023",
+      "location": "Bangalore, India",
+      "keywords": "AWS, MySQL, SQL, Cloud Migration, Dashboards, Data Visualization",
+      "bullets": [
+        "Migrated paper system to AWS with 100,000+ MySQL records",
+        "Improved project success rates 20% via interactive risk dashboards",
+        "Optimized task completion 24% with weighted performance indexing"
+      ]
+    }
+  ]
+}
