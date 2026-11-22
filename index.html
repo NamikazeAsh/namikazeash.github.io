@@ -617,6 +617,10 @@
       gap: .3rem;
     }
     
+    .project-links .live-link { cursor: pointer; }
+    .project-links .live-link:hover, .project-links .live-link:focus-visible { text-decoration: underline; }
+    .project-links .live-dot { color: #22c55e; }
+
     /* Skills */
     .skills-container {
       display: grid;
@@ -1187,30 +1191,31 @@
   <h2>Projects</h2>
   <div class="project-grid">
     <!-- MetaMatch Updated -->
-    <a class="project-card favorite" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" data-keywords="Python, RAG, Hybrid Search, BM25, Reciprocal Rank Fusion, Dense Retrieval, LLMs, Llama, Multi Agent, AI Agents, Tool Use, Hallucination Detection, Guardrails, LLM Evaluation, Benchmarking, Semantic Parsing, Information Extraction, Vector Database, ChromaDB, Sentence-Transformers, Embeddings, Hugging Face, Transformers, Recommender Systems, Collaborative Filtering, Node.js, SQLite, Pandas, Altair, BeautifulSoup, Web Scraping, CI/CD, GitHub Actions, pytest" data-gallery="metamatch">
+    <a class="project-card favorite" href="https://github.com/NamikazeAsh/MetaMatch" target="_blank" data-keywords="Python, RAG, Hybrid Search, BM25, Reciprocal Rank Fusion, Dense Retrieval, LLMs, Llama, Multi Agent, AI Agents, Tool Use, Hallucination Detection, Guardrails, LLM Evaluation, Benchmarking, Semantic Parsing, Information Extraction, Vector Database, ChromaDB, Sentence-Transformers, Embeddings, Hugging Face, Transformers, Recommender Systems, Collaborative Filtering, Node.js, SQLite, Pandas, Altair, BeautifulSoup, Web Scraping, CI/CD, GitHub Actions, pytest, Streamlit, Game Theory, Minimax, Time Series, Data Pipelines, Intent Recognition, Named Entity Recognition, Deployment">
       <span class="favorite-badge">★ Personal Favorite</span>
       <div class="project-image dark-bg">
         <img src="images/metamatch_logo.png" alt="MetaMatch Logo">
       </div>
       <div class="project-content">
         <h3>MetaMatch</h3>
-        <p>A local AI coach for competitive Pokémon where the engine does the thinking and Llama 3.2 does the talking. The Smogon damage calculator computes every fact, a verifier rejects any answer that contradicts it, and strategy advice is grounded by hybrid BM25 plus dense retrieval over Smogon analyses and ladder stats. An industry grade pipeline with 184 tests, three benchmarks and a CI regression gate.</p>
+        <p>A competitive Pokémon coach for new and casual players, powered by a deterministic battle engine and a small local model. Paste a team and it writes a game plan, runs the real damage calculator against this month's most used Pokémon, and builds a team around your favorite. The engine computes every fact, every claim the model makes is checked before you see it, hybrid RAG cites strategy guides instead of paraphrasing them, and minimax picks your best three at team preview.</p>
         <div class="project-stats">
           <span class="project-stat">18% to 97.5% Accuracy, Same 3B Model</span>
           <span class="project-stat">Hybrid RAG: 74% to 94% Top Hit</span>
           <span class="project-stat">0.93 F1 Parsing Real Player Questions</span>
         </div>
         <div class="project-tech">
+          <span class="skill-tag">Streamlit</span>
           <span class="skill-tag">Ollama</span>
-          <span class="skill-tag">ChromaDB</span>
-          <span class="skill-tag">Hybrid Search (RRF)</span>
-          <span class="skill-tag">Sentence-Transformers</span>
+          <span class="skill-tag">Hybrid RAG</span>
           <span class="skill-tag">Hallucination Guardrails</span>
+          <span class="skill-tag">Game Theory</span>
+          <span class="skill-tag">Time Series Analytics</span>
           <span class="skill-tag">LLM Evaluation</span>
         </div>
         <div class="project-links">
+          <span class="live-link" role="link" tabindex="0" data-href="https://metamatch.streamlit.app/"><span class="live-dot">●</span> Live demo</span>
           <span>→ GitHub</span>
-          <span class="gallery-hint">⤢ View screenshots</span>
         </div>
       </div>
     </a>
@@ -1567,17 +1572,6 @@
       ['images/mafialab/eject.webp', 'A vote out plays a short ejection animation and reveals the role.'],
       ['images/mafialab/victory.webp', 'The game ends with a banner and every role is revealed.']
     ],
-    metamatch: [
-      ['images/metamatch/dashboard.webp', 'Paste a Showdown team and every set is parsed into roles, items, abilities and EV spreads, with the archetype and critical weakness computed in code.'],
-      ['images/metamatch/chat_oak.webp', 'Professor Oak opens with an engine check computed by the damage calculator, then explains it. Advice that contradicts the engine is rejected before you see it.'],
-      ['images/metamatch/chat_engine.webp', 'Fact questions are answered by the engine, not the model: the speed stat, the opponent spread from ladder data, and a verdict the LLM can only explain.'],
-      ['images/metamatch/metaflash.webp', 'MetaFlash, a front page for the current ladder: rank changes, standard sets and six month trends, refreshed every month from Smogon usage stats.'],
-      ['images/metamatch/quickmatch.webp', 'Quick Match: pick a core and get partners ranked by Smogon teammate correlation data. Here, Great Tusk and Kingambit.'],
-      ['images/metamatch/threats.webp', 'Meta threats ranked from real ladder usage, with type math showing which team members each threat hits and who can check it.'],
-      ['images/metamatch/replay.webp', 'Replay Auditor parses a Showdown replay into the result, Pokémon remaining, and a turn by turn momentum chart.'],
-      ['images/metamatch/movesearch.webp', 'Move Search finds verified Smogon sets that run every selected move, with matched moves highlighted.'],
-      ['images/metamatch/matrices.webp', 'Defensive matchup matrix computed from the type chart, so weaknesses come from rules rather than model guesses.']
-    ],
     casino: [
       ['images/casino/experiment_results.webp', 'A/B/B test results: free spins lifted 30 day retention from 41.0% to 46.8% (p = 6.97e-09), with a bootstrap CI and power analysis.'],
       ['images/casino/overview.webp', '15,000 simulated players and $2.74M in revenue, split evenly across control, cashback and free spins arms.'],
@@ -1609,6 +1603,13 @@
     gThumbs.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-current', j === gIndex));
     gThumbs.children[gIndex].scrollIntoView({ block: 'nearest', inline: 'nearest' });
   }
+
+  // Live demo labels sit inside the card's repo link, so open them by hand
+  document.querySelectorAll('.project-links [data-href]').forEach(el => {
+    const open = e => { e.preventDefault(); e.stopPropagation(); window.open(el.dataset.href, '_blank', 'noopener'); };
+    el.addEventListener('click', open);
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') open(e); });
+  });
 
   document.querySelectorAll('.project-card[data-gallery]').forEach(card => {
     card.addEventListener('click', e => {
