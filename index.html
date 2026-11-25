@@ -1147,9 +1147,9 @@
       <ul>
         <li>Engineered an LLM pipeline, mining 35M records, finding 278K+ publication trial links &amp; transforming 13K+ unstructured papers into structured data via prompt engineering &amp; strict JSON Schema outputs, with every field traced to its source sentence</li>
         <li>Built an LLM evaluation framework on AWS Bedrock for clinical data extraction across cost, recall, &amp; token efficiency, cutting per paper inference cost ~65% while retaining 90% recall against the baseline model</li>
-        <li>Developed a fallback LLM pipeline on AWS Bedrock with automated error handling, adaptive retries &amp; batch inference recovery, achieving 95% recovery across failed records</li>
-        <li>Architected an entity normalization pipeline, mapping 45K+ clinical trial adverse events to medical ontologies, measuring &amp; closing coverage gaps from 75.1% to 85.4% (+4.6K events) with zero entity regressions</li>
-        <li>Designed &amp; deployed a clinical trial data model in Neo4j (115K+ nodes, 116K+ relationships), enabling researchers to self serve structured trial data through REST APIs</li>
+        <li>Developed a fallback LLM pipeline on AWS Bedrock with automated error handling, adaptive retries &amp; failed batch reprocessing, achieving 95% recovery across failed records</li>
+        <li>Architected an entity normalization pipeline, mapping 45K+ clinical trial adverse events to medical ontologies, measuring &amp; closing data coverage gaps from 75.1% to 85.4% with zero entity regressions</li>
+        <li>Designed &amp; deployed a data model in Neo4j (115K+ nodes), helping researchers to self serve structured trial data via REST APIs</li>
       </ul>
     </div>
 
